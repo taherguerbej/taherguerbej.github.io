@@ -5,6 +5,9 @@ import {
   HERO_AVAILABILITY,
 } from "@/constants/hero-constants";
 
+// Rendered once at build time (static export for GitHub Pages).
+export const dynamic = "force-static";
+
 export const alt = `${HERO_NAME}, ${HERO_ROLE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
