@@ -4,6 +4,8 @@ import { type FC } from "react";
 import { motion } from "motion/react";
 import { formatCounter } from "@/helpers/format-helpers";
 import { type ProjectSummaryProps } from "@/types/project-types";
+import { useContent } from "@/components/i18n/locale-provider";
+import { STATUS_LABELS } from "@/content/en";
 
 const reveal = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -17,7 +19,9 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({
   index,
   total,
   onOpen,
-}) => (
+}) => {
+  const { locale, ui } = useContent();
+  return (
   <div className="order-2 lg:order-1 lg:col-span-5">
     <motion.p
       {...reveal()}
@@ -41,7 +45,7 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({
       <span>{project.period}</span>
       {project.status && (
         <span className="rounded-full border border-aqua/30 bg-aqua/10 px-2 py-0.5 text-aqua">
-          {project.status}
+          {STATUS_LABELS[locale][project.status]}
         </span>
       )}
       {project.team && <span>· {project.team}</span>}
@@ -67,7 +71,7 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({
 
     <motion.div {...reveal(0.3)} className="mt-7 flex flex-wrap gap-3">
       <button type="button" onClick={onOpen} className="btn-primary">
-        <span>Read case study</span>
+        <span>{ui.projects.readCaseStudy}</span>
         <span aria-hidden>→</span>
       </button>
       {project.links?.map((link) => (
@@ -84,4 +88,5 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({
       ))}
     </motion.div>
   </div>
-);
+  );
+};

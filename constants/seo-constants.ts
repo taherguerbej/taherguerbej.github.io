@@ -91,3 +91,42 @@ export const SITE_SECTIONS = [
 export const SOCIAL_PROFILES = MY_SOCIALS.map((social) => social.href);
 
 export const CONTACT_POINT_EMAIL = CONTACT_EMAIL;
+
+/* French version, served at /fr. */
+export const HERO_ROLE_FR = "Élève ingénieur en robotique et mécatronique";
+
+export const SITE_NAME_FR = `${HERO_NAME} | Portfolio robotique`;
+
+export const SITE_TITLE_FR = `${HERO_NAME} | ${HERO_ROLE_FR}`;
+
+export const SITE_DESCRIPTION_FR =
+  "Élève ingénieur en robotique et mécatronique (ENISO, SIGMA Clermont) : apprentissage robotique, perception et commande sécurisée. Disponible pour un stage de fin d'études dès mars 2027.";
+
+export const SITE_TAGLINE_FR =
+  "Apprentissage robotique, perception et commande sécurisée pour des systèmes robotiques intelligents.";
+
+export const OG_LOCALE_FR = "fr_FR";
+
+export const SITE_KEYWORDS_FR = [
+  HERO_NAME,
+  "Élève ingénieur robotique",
+  "Mécatronique",
+  "Apprentissage robotique",
+  "Apprentissage par renforcement",
+  "Perception active",
+  "Manipulation à deux bras",
+  "Fonctions barrières de contrôle",
+  "ROS 2",
+  "Isaac Lab",
+  "Stage de fin d'études",
+  "SIGMA Clermont",
+  "ENISO",
+  HERO_LOCATION,
+];
+
+/** hreflang links shared by both pages. */
+export const LANGUAGE_ALTERNATES = {
+  en: "/",
+  fr: "/fr/",
+  "x-default": "/",
+} as const;

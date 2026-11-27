@@ -6,6 +6,7 @@ import { TILT_RANGE, TILT_SPRING } from "@/constants/projects-constants";
 import { formatCounter, padIndex } from "@/helpers/format-helpers";
 import { type ProjectPreviewProps } from "@/types/project-types";
 import { ProjectMedia } from "./project-media";
+import { useContent } from "@/components/i18n/locale-provider";
 
 const BADGE =
   "rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[10px] uppercase tracking-[0.3em] backdrop-blur-md";
@@ -17,6 +18,7 @@ export const ProjectPreview: FC<ProjectPreviewProps> = ({
   showPreview,
   onOpen,
 }) => {
+  const { ui } = useContent();
   const pointerX = useMotionValue(0.5);
   const pointerY = useMotionValue(0.5);
   const rotateX = useSpring(
@@ -41,14 +43,14 @@ export const ProjectPreview: FC<ProjectPreviewProps> = ({
 
   const media = project.media;
   const label = media
-    ? media.caption?.startsWith("Simulation")
-      ? "Simulation"
-      : media.caption?.startsWith("Real robot")
-        ? "Real robot"
+    ? media.caption?.startsWith(ui.projects.badgeSimulation)
+      ? ui.projects.badgeSimulation
+      : media.caption?.startsWith(ui.projects.badgeRealRobot)
+        ? ui.projects.badgeRealRobot
         : media.type === "video"
-        ? "Video"
-        : "Result"
-    : "Media coming soon";
+          ? ui.projects.badgeVideo
+          : ui.projects.badgeResult
+    : ui.projects.mediaSoon;
 
   return (
     <div className="order-1 lg:order-2 lg:col-span-7">
@@ -99,7 +101,7 @@ export const ProjectPreview: FC<ProjectPreviewProps> = ({
             style={{ transform: "translateZ(80px)" }}
             className="absolute bottom-4 right-5 inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-2 text-xs text-white backdrop-blur-md hover:border-aqua/60"
           >
-            <span>Case study</span>
+            <span>{ui.projects.caseStudy}</span>
             <span aria-hidden>↗</span>
           </button>
 

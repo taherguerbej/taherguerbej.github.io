@@ -7,6 +7,8 @@ import {
   ProjectMedia,
 } from "@/components/projects/project-media";
 import { type ProjectDetailsProps } from "@/types/portfolio-types";
+import { useContent } from "@/components/i18n/locale-provider";
+import { STATUS_LABELS } from "@/content/en";
 
 const Bullets: FC<{ items: string[] }> = ({ items }) => (
   <ul className="space-y-3">
@@ -35,6 +37,8 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
   credits,
   closeModal,
 }) => {
+  const { locale, ui } = useContent();
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") closeModal();
@@ -65,7 +69,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
       >
         <button
           onClick={closeModal}
-          aria-label="Close"
+          aria-label={ui.projects.close}
           className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -82,7 +86,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
           <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-storm to-indigo">
             <div className="blueprint-grid absolute inset-0" />
             <span className="relative text-xs uppercase tracking-[0.3em] text-neutral-400">
-              Media coming soon
+              {ui.projects.mediaSoon}
             </span>
           </div>
         )}
@@ -100,7 +104,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
             <span>{period}</span>
             {status && (
               <span className="rounded-full border border-aqua/30 bg-aqua/10 px-2 py-0.5 text-aqua">
-                {status}
+                {STATUS_LABELS[locale][status]}
               </span>
             )}
             {team && <span>· {team}</span>}
@@ -108,7 +112,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
 
           <p className="mt-5 text-neutral-300">{description}</p>
 
-          <h4 className="mb-3 mt-7 text-eyebrow">What I did</h4>
+          <h4 className="mb-3 mt-7 text-eyebrow">{ui.projects.whatIDid}</h4>
           <Bullets items={subDescription} />
 
           {subprojects?.map((sub) => (
@@ -117,7 +121,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
               className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5"
             >
               <p className="text-[10px] uppercase tracking-[0.3em] text-aqua/80">
-                Sub-project
+                {ui.projects.subProject}
               </p>
               <h4 className="mt-1 text-lg font-semibold text-white">
                 {sub.title}
@@ -144,7 +148,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
 
           {gallery && gallery.length > 0 && (
             <>
-              <h4 className="mb-3 mt-8 text-eyebrow">More media</h4>
+              <h4 className="mb-3 mt-8 text-eyebrow">{ui.projects.moreMedia}</h4>
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 {gallery.map((item) => (
                   <figure key={item.src}>
@@ -185,7 +189,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({
 
           {credits && credits.length > 0 && (
             <p className="mt-4 text-xs text-neutral-500">
-              Credits: {credits.join(" ")}
+              {ui.projects.credits} {credits.join(" ")}
             </p>
           )}
         </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, type FC } from "react";
-import { HERO_AVAILABILITY, HERO_NAME } from "@/constants/portfolio-constants";
+import { useContent } from "@/components/i18n/locale-provider";
+import { HERO_NAME } from "@/constants/portfolio-constants";
 
 const FIRST_LINE = HERO_NAME.split(" ");
 
@@ -10,6 +11,7 @@ const SESSION_KEY = "intro-played";
 
 export const PageLoader: FC = () => {
   const [removed, setRemoved] = useState(false);
+  const { hero, ui } = useContent();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -61,7 +63,7 @@ export const PageLoader: FC = () => {
           className="reveal mt-3 text-[10px] uppercase tracking-[0.4em] text-neutral-400 md:text-xs"
           style={{ animationDelay: "0.16s" }}
         >
-          Robotics & Mechatronics · Perception · Planning · Control
+          {ui.loaderTagline}
         </p>
 
         <div
@@ -69,7 +71,7 @@ export const PageLoader: FC = () => {
           style={{ animationDelay: "0.22s" }}
         >
           <div className="mb-2 flex items-center justify-between text-[10px] uppercase tracking-[0.4em] text-neutral-500">
-            <span>Loading</span>
+            <span>{ui.loading}</span>
             <span className="intro-count tabular-nums text-white" />
           </div>
           <div className="relative h-[2px] w-full rounded-full bg-white/10">
@@ -88,7 +90,7 @@ export const PageLoader: FC = () => {
         >
           <span className="block h-2 w-2 rounded-full bg-mint shadow-[0_0_12px_rgba(87,219,150,0.8)]" />
           <span className="text-[10px] uppercase tracking-[0.4em] text-neutral-400">
-            {HERO_AVAILABILITY}
+            {hero.availability}
           </span>
         </div>
       </div>

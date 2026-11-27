@@ -5,10 +5,9 @@ import { CvButton } from "@/components/navbar/cv-button";
 import { MobileMenu } from "@/components/navbar/mobile-menu";
 import { NavBrand } from "@/components/navbar/nav-brand";
 import { NavLink } from "@/components/navbar/nav-link";
-import {
-  NAV_ITEMS,
-  NAV_SCROLLED_AT,
-} from "@/constants/navigation-constants";
+import { LanguageSwitch } from "@/components/i18n/language-switch";
+import { useContent } from "@/components/i18n/locale-provider";
+import { NAV_SCROLLED_AT } from "@/constants/navigation-constants";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { useScrolled } from "@/hooks/use-scrolled";
 
@@ -16,6 +15,7 @@ export const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const scrolled = useScrolled(NAV_SCROLLED_AT);
   const active = useActiveSection();
+  const { ui } = useContent();
 
   return (
     <header
@@ -31,7 +31,7 @@ export const Navbar: FC = () => {
 
           <nav className="hidden lg:flex">
             <ul className="nav-ul">
-              {NAV_ITEMS.map((item) => (
+              {ui.nav.map((item) => (
                 <NavLink
                   key={item.href}
                   {...item}
@@ -41,15 +41,18 @@ export const Navbar: FC = () => {
             </ul>
           </nav>
 
-          <div className="hidden items-center lg:flex">
+          <div className="hidden items-center gap-3 lg:flex">
+            <LanguageSwitch />
             <CvButton />
           </div>
 
+          <div className="flex items-center gap-4 lg:hidden">
+          <LanguageSwitch />
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="flex cursor-pointer text-neutral-300 hover:text-white lg:hidden"
-            aria-label="Toggle menu"
+            className="flex cursor-pointer text-neutral-300 hover:text-white"
+            aria-label={ui.toggleMenu}
             aria-expanded={isOpen}
           >
             <img
@@ -58,6 +61,7 @@ export const Navbar: FC = () => {
               alt=""
             />
           </button>
+          </div>
         </div>
       </div>
 

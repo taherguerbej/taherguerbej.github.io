@@ -4,10 +4,13 @@ import { type FC } from "react";
 import { motion } from "motion/react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { VIEWPORT_ONCE } from "@/animations/scroll-animations";
-import { LANGUAGES, SKILL_GROUPS } from "@/constants/skills-constants";
+import { useContent } from "@/components/i18n/locale-provider";
+import { Heading } from "@/components/i18n/heading";
 
 /** Replaces the template's testimonials with grouped, factual skills. */
-export const Skills: FC = () => (
+export const Skills: FC = () => {
+  const { skillGroups, languages, ui } = useContent();
+  return (
   <section
     id="skills"
     className="relative c-space section-spacing overflow-hidden"
@@ -17,17 +20,12 @@ export const Skills: FC = () => (
     </div>
 
     <SectionHeader
-      eyebrow="Skills & tools"
-      title={
-        <>
-          The toolkit behind{" "}
-          <span className="text-gradient">the projects.</span>
-        </>
-      }
+      eyebrow={ui.skills.eyebrow}
+      title={<Heading {...ui.skills.title} />}
     />
 
     <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {SKILL_GROUPS.map((group, index) => (
+      {skillGroups.map((group, index) => (
         <motion.div
           key={group.title}
           initial={{ opacity: 0, y: 30 }}
@@ -58,9 +56,9 @@ export const Skills: FC = () => (
       transition={{ duration: 0.6 }}
       className="glass gradient-border mt-4 p-6"
     >
-      <p className="text-eyebrow !text-aqua/80">Languages</p>
+      <p className="text-eyebrow !text-aqua/80">{ui.skills.languages}</p>
       <ul className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
-        {LANGUAGES.map((language) => (
+        {languages.map((language) => (
           <li key={language.name}>
             <p className="font-semibold text-white">{language.name}</p>
             <p className="text-sm text-neutral-400">{language.level}</p>
@@ -69,4 +67,5 @@ export const Skills: FC = () => (
       </ul>
     </motion.div>
   </section>
-);
+  );
+};

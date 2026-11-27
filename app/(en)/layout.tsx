@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Funnel_Display } from "next/font/google";
-import { JsonLd } from "@/components/seo/json-ld";
+import { RootDocument } from "@/components/seo/root-document";
 import { HERO_NAME } from "@/constants/hero-constants";
 import {
   GOOGLE_SITE_VERIFICATION,
@@ -12,13 +11,6 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from "@/constants/seo-constants";
-import "./globals.css";
-
-const funnelDisplay = Funnel_Display({
-  variable: "--font-funnel-display",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -64,41 +56,8 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-const INTRO_SKIP_SCRIPT = `try{if(sessionStorage.getItem("intro-played")==="1"){document.documentElement.dataset.introPlayed="1"}}catch(e){}`;
-
-const NOSCRIPT_CSS = `
-  .page-loader { display: none !important; }
-  #site-content [style] {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-  }
-`;
-
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html
-      lang="en"
-      className={`${funnelDisplay.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
-      <body
-        className="min-h-full flex flex-col"
-        suppressHydrationWarning
-      >
-        <script
-          dangerouslySetInnerHTML={{ __html: INTRO_SKIP_SCRIPT }}
-        />
-        <noscript>
-          <style>{NOSCRIPT_CSS}</style>
-        </noscript>
-        <JsonLd />
-        {children}
-      </body>
-    </html>
-  );
+}: Readonly<{ children: React.ReactNode }>) {
+  return <RootDocument lang="en">{children}</RootDocument>;
 }

@@ -12,9 +12,11 @@ import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
 import { PageLoader } from "@/components/portfolio/page-loader";
 import { GlobeLayer } from "@/components/globe/globe-layer";
+import { LocaleProvider } from "@/components/i18n/locale-provider";
+import { type Locale } from "@/types/i18n-types";
 
-export const HomePage: FC = () => (
-  <>
+export const HomePage: FC<{ locale: Locale }> = ({ locale }) => (
+  <LocaleProvider locale={locale}>
     <PageLoader />
     <GlobeLayer />
     <div id="site-content" className="relative z-10 w-full">
@@ -28,5 +30,5 @@ export const HomePage: FC = () => (
       <Contact />
       <Footer />
     </div>
-  </>
+  </LocaleProvider>
 );

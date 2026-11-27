@@ -1,7 +1,7 @@
 "use client";
 
 import { type FC } from "react";
-import { MY_PROJECTS } from "@/constants/portfolio-constants";
+import { useContent } from "@/components/i18n/locale-provider";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import {
   type ProjectListProps,
@@ -18,16 +18,19 @@ const LazyPanel: FC<Omit<ProjectPanelProps, "showPreview">> = (props) => {
   );
 };
 
-export const VerticalProjects: FC<ProjectListProps> = ({ onOpen }) => (
+export const VerticalProjects: FC<ProjectListProps> = ({ onOpen }) => {
+  const { projects } = useContent();
+  return (
   <div className="mt-12 space-y-20">
-    {MY_PROJECTS.map((project, index) => (
+    {projects.map((project, index) => (
       <LazyPanel
         key={project.id}
         project={project}
         index={index}
-        total={MY_PROJECTS.length}
+        total={projects.length}
         onOpen={() => onOpen(project)}
       />
     ))}
   </div>
-);
+  );
+};

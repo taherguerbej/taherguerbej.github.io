@@ -10,9 +10,11 @@ import {
 import { formatCounter, padIndex } from "@/helpers/format-helpers";
 import { type FocusCardProps } from "@/types/focus-types";
 import { FocusBullets } from "./focus-bullets";
+import { useContent } from "@/components/i18n/locale-provider";
 
 export const FocusCard: FC<FocusCardProps> = ({ area, index, total }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const { ui } = useContent();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 80%", "end 30%"],
@@ -49,7 +51,7 @@ export const FocusCard: FC<FocusCardProps> = ({ area, index, total }) => {
             <div>
               <div className="flex items-center gap-4">
                 <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] uppercase tracking-[0.4em] text-white/60">
-                  Focus {formatCounter(index, total)}
+                  {ui.focus.card} {formatCounter(index, total)}
                 </span>
                 <span className="block h-px w-12 bg-white/30" />
               </div>
@@ -64,7 +66,7 @@ export const FocusCard: FC<FocusCardProps> = ({ area, index, total }) => {
 
             <div className="mt-8">
               <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-white/50">
-                Applied in
+                {ui.focus.appliedIn}
               </p>
               <div className="flex flex-wrap gap-2">
                 {area.appliedIn.map((place) => (
@@ -101,7 +103,7 @@ export const FocusCard: FC<FocusCardProps> = ({ area, index, total }) => {
               </div>
             </div>
 
-            <FocusBullets title="What it covers" bullets={area.bullets} />
+            <FocusBullets title={ui.focus.covers} bullets={area.bullets} />
           </div>
         </div>
 

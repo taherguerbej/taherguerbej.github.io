@@ -2,7 +2,7 @@
 
 import { type FC } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { NAV_ITEMS } from "@/constants/navigation-constants";
+import { useContent } from "@/components/i18n/locale-provider";
 import { CvButton } from "./cv-button";
 import { NavLink } from "./nav-link";
 
@@ -12,7 +12,9 @@ interface MobileMenuProps {
   onClose: () => void;
 }
 
-export const MobileMenu: FC<MobileMenuProps> = ({ open, active, onClose }) => (
+export const MobileMenu: FC<MobileMenuProps> = ({ open, active, onClose }) => {
+  const { ui } = useContent();
+  return (
   <AnimatePresence>
     {open && (
       <motion.div
@@ -24,7 +26,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, active, onClose }) => (
       >
         <nav className="py-5">
           <ul className="nav-ul">
-            {NAV_ITEMS.map((item) => (
+            {ui.nav.map((item) => (
               <NavLink
                 key={item.href}
                 {...item}
@@ -40,4 +42,5 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, active, onClose }) => (
       </motion.div>
     )}
   </AnimatePresence>
-);
+  );
+};

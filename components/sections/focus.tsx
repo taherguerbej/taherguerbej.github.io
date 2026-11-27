@@ -4,11 +4,13 @@ import { useRef, type FC } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { FocusCard } from "@/components/focus/focus-card";
 import { SectionHeader } from "@/components/ui/section-header";
-import { FOCUS_AREAS } from "@/constants/focus-constants";
+import { useContent } from "@/components/i18n/locale-provider";
+import { Heading } from "@/components/i18n/heading";
 import { padIndex } from "@/helpers/format-helpers";
 
 export const Focus: FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { focusAreas, ui } = useContent();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -37,23 +39,18 @@ export const Focus: FC = () => {
 
       <SectionHeader
         className="mb-12"
-        eyebrow={`Engineering focus areas · ${padIndex(FOCUS_AREAS.length)}`}
-        title={
-          <>
-            Where I put my effort,{" "}
-            <span className="text-gradient">from simulation to hardware.</span>
-          </>
-        }
-        hint={["Scroll", "Stack"]}
+        eyebrow={`${ui.focus.eyebrow} · ${padIndex(focusAreas.length)}`}
+        title={<Heading {...ui.focus.title} />}
+        hint={ui.focus.hint}
       />
 
       <div className="relative space-y-6 md:space-y-8">
-        {FOCUS_AREAS.map((area, index) => (
+        {focusAreas.map((area, index) => (
           <FocusCard
             key={area.id}
             area={area}
             index={index}
-            total={FOCUS_AREAS.length}
+            total={focusAreas.length}
           />
         ))}
       </div>

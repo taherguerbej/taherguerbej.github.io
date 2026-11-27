@@ -3,10 +3,13 @@
 import { type FC } from "react";
 import { motion } from "motion/react";
 import { VIEWPORT_ONCE } from "@/animations/scroll-animations";
-import { OTHER_PROJECTS } from "@/constants/projects-constants";
+import { useContent } from "@/components/i18n/locale-provider";
+import { STATUS_LABELS } from "@/content/en";
 
 /** Secondary collection: smaller academic projects, shown as cards. */
-export const MoreProjects: FC = () => (
+export const MoreProjects: FC = () => {
+  const { locale, otherProjects, ui } = useContent();
+  return (
   <div className="c-space mt-24">
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,12 +18,12 @@ export const MoreProjects: FC = () => (
       transition={{ duration: 0.8 }}
       className="mb-6 flex items-center justify-between"
     >
-      <p className="text-eyebrow">More academic projects</p>
+      <p className="text-eyebrow">{ui.projects.more}</p>
       <div className="ml-6 h-px flex-1 bg-gradient-to-r from-white/15 via-white/5 to-transparent" />
     </motion.div>
 
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {OTHER_PROJECTS.map((project, index) => (
+      {otherProjects.map((project, index) => (
         <motion.article
           key={project.title}
           initial={{ opacity: 0, y: 30 }}
@@ -33,7 +36,7 @@ export const MoreProjects: FC = () => (
             <span>{project.context}</span>
             {project.status && (
               <span className="rounded-full border border-aqua/30 bg-aqua/10 px-2 py-0.5 tracking-normal normal-case text-aqua">
-                {project.status}
+                {STATUS_LABELS[locale][project.status]}
               </span>
             )}
           </div>
@@ -73,4 +76,5 @@ export const MoreProjects: FC = () => (
       ))}
     </div>
   </div>
-);
+  );
+};

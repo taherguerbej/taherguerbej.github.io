@@ -2,17 +2,15 @@
 
 import { type FC } from "react";
 import { motion, useSpring, useTransform } from "motion/react";
-import {
-  MY_PROJECTS,
-  PREVIEW_WINDOW,
-  TRACK_SPRING,
-} from "@/constants/projects-constants";
+import { PREVIEW_WINDOW, TRACK_SPRING } from "@/constants/projects-constants";
+import { useContent } from "@/components/i18n/locale-provider";
 import { usePinnedProgress } from "@/hooks/use-pinned-progress";
 import { type ProjectListProps } from "@/types/project-types";
 import { ProjectPanel } from "./project-panel";
 
 export const PinnedShowcase: FC<ProjectListProps> = ({ onOpen }) => {
-  const total = MY_PROJECTS.length;
+  const { projects } = useContent();
+  const total = projects.length;
   const { trackRef, progress, activeIndex } = usePinnedProgress(total);
 
   const x = useSpring(
@@ -34,7 +32,7 @@ export const PinnedShowcase: FC<ProjectListProps> = ({ onOpen }) => {
         </div>
 
         <motion.div style={{ x }} className="flex h-full will-change-transform">
-          {MY_PROJECTS.map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectPanel
               key={project.id}
               project={project}

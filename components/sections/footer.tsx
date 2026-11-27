@@ -5,15 +5,16 @@ import { motion, useInView } from "motion/react";
 import {
   CONTACT_EMAIL,
   HERO_NAME,
-  HERO_ROLE,
   MY_SOCIALS,
 } from "@/constants/portfolio-constants";
+import { useContent } from "@/components/i18n/locale-provider";
 
 const TEMPLATE_URL = "https://github.com/HasnainIrfan/3d-portfolio";
 
 export const Footer: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const { hero, ui } = useContent();
 
   return (
     <footer ref={ref} className="c-space pt-16 pb-8 relative overflow-hidden">
@@ -43,7 +44,7 @@ export const Footer: FC = () => {
             <span>{HERO_NAME}</span>
           </div>
           <p className="mt-3 text-sm text-neutral-400 max-w-sm">
-            {HERO_ROLE}. Reach me at{" "}
+            {hero.role}. {ui.footer.reachMe}{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="text-white hover:text-aqua transition-colors break-all"
@@ -77,14 +78,14 @@ export const Footer: FC = () => {
             </span>
             <span>·</span>
             <span>
-              Built on{" "}
+              {ui.footer.builtOn}{" "}
               <a
                 href={TEMPLATE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline decoration-white/20 underline-offset-2 hover:text-white"
               >
-                Hasnain Irfan&apos;s 3D portfolio template
+                {ui.footer.template}
               </a>{" "}
               (MIT)
             </span>

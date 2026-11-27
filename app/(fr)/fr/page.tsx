@@ -2,10 +2,11 @@ import { type Metadata } from "next";
 import { HomePage } from "@/components/portfolio/home-page";
 import { HERO_NAME } from "@/constants/hero-constants";
 import {
-  HOME_DESCRIPTION,
-  HOME_TITLE,
-  OG_LOCALE,
-  SITE_NAME,
+  LANGUAGE_ALTERNATES,
+  OG_LOCALE_FR as OG_LOCALE,
+  SITE_DESCRIPTION_FR as HOME_DESCRIPTION,
+  SITE_NAME_FR as SITE_NAME,
+  SITE_TITLE_FR as HOME_TITLE,
   SITE_URL,
 } from "@/constants/seo-constants";
 
@@ -15,7 +16,8 @@ export const metadata: Metadata = {
   },
   description: HOME_DESCRIPTION,
   alternates: {
-    canonical: "/",
+    canonical: "/fr/",
+    languages: LANGUAGE_ALTERNATES,
   },
   robots: {
     index: true,
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "profile",
-    url: SITE_URL,
+    url: `${SITE_URL}/fr/`,
     siteName: SITE_NAME,
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
@@ -46,5 +48,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePage />;
+  return <HomePage locale="fr" />;
 }

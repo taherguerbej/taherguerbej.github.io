@@ -6,10 +6,12 @@ import { AboutBio } from "@/components/about/about-bio";
 import { AboutStatCard } from "@/components/about/about-stat-card";
 import { SkillsMarquee } from "@/components/about/skills-marquee";
 import { SectionHeader } from "@/components/ui/section-header";
-import { STATS } from "@/constants/hero-constants";
+import { useContent } from "@/components/i18n/locale-provider";
+import { Heading } from "@/components/i18n/heading";
 
 export const About: FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { stats, ui } = useContent();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -37,19 +39,14 @@ export const About: FC = () => {
       </motion.div>
 
       <SectionHeader
-        eyebrow="About"
-        title={
-          <>
-            Building robots that{" "}
-            <span className="text-gradient">see, decide and move safely.</span>
-          </>
-        }
+        eyebrow={ui.about.eyebrow}
+        title={<Heading {...ui.about.title} />}
       />
 
       <div className="mt-12 grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
         <AboutBio />
         <div className="grid grid-cols-2 gap-4 lg:col-span-5">
-          {STATS.map((stat, index) => (
+          {stats.map((stat, index) => (
             <AboutStatCard key={stat.label} {...stat} index={index} />
           ))}
         </div>

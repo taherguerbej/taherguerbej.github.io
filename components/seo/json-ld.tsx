@@ -1,6 +1,9 @@
 import { type FC } from "react";
+import { type Locale } from "@/types/i18n-types";
 import {
   CONTACT_POINT_EMAIL,
+  HERO_ROLE_FR,
+  SITE_DESCRIPTION_FR,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_SECTIONS,
@@ -99,9 +102,27 @@ const graph = {
   "@graph": [person, website, profilePage, navigation, ...sections],
 };
 
-export const JsonLd: FC = () => (
+/** French page: same graph, French texts and its own page node. */
+const graphFr = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { ...person, jobTitle: HERO_ROLE_FR, description: SITE_DESCRIPTION_FR },
+    website,
+    {
+      ...profilePage,
+      "@id": `${SITE_URL}/fr/#webpage`,
+      url: `${SITE_URL}/fr/`,
+      description: SITE_DESCRIPTION_FR,
+      inLanguage: "fr",
+    },
+  ],
+};
+
+export const JsonLd: FC<{ locale: Locale }> = ({ locale }) => (
   <script
     type="application/ld+json"
-    dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify(locale === "fr" ? graphFr : graph),
+    }}
   />
 );

@@ -2,22 +2,16 @@
 
 import { type CSSProperties, type FC } from "react";
 import { FlipWords } from "@/components/portfolio/flip-words";
-import {
-  CV_FILE_NAME,
-  CV_URL,
-  FLIP_WORDS,
-  HERO_AVAILABILITY,
-  HERO_NAME,
-  HERO_ROLE,
-  HERO_TAGLINE,
-  MY_SOCIALS,
-} from "@/constants/portfolio-constants";
+import { useContent } from "@/components/i18n/locale-provider";
+import { HERO_NAME, MY_SOCIALS } from "@/constants/portfolio-constants";
 
 const delay = (seconds: number): CSSProperties => ({
   animationDelay: `calc(var(--intro-delay) + ${seconds}s)`,
 });
 
-const AvailabilityBadge: FC<{ compact?: boolean }> = ({ compact }) => (
+const AvailabilityBadge: FC<{ compact?: boolean }> = ({ compact }) => {
+  const { hero } = useContent();
+  return (
   <div
     className={`reveal inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md px-3 py-1.5 ${
       compact ? "self-center" : "self-start mb-6"
@@ -33,10 +27,11 @@ const AvailabilityBadge: FC<{ compact?: boolean }> = ({ compact }) => (
         compact ? "text-[10px]" : "text-xs"
       } tracking-[0.25em] uppercase text-neutral-300`}
     >
-      {HERO_AVAILABILITY}
+      {hero.availability}
     </span>
   </div>
-);
+  );
+};
 
 /** Round icon buttons on desktop, labelled buttons on phones. */
 const SocialButtons: FC<{ full?: boolean }> = ({ full }) => (
@@ -60,6 +55,7 @@ const SocialButtons: FC<{ full?: boolean }> = ({ full }) => (
 );
 
 export const HeroText: FC = () => {
+  const { locale, hero, cv, ui } = useContent();
   return (
     <div className="z-10 mt-24 text-center md:mt-32 md:text-left max-w-4xl">
       <div className="flex-col hidden md:flex c-space">
@@ -76,12 +72,12 @@ export const HeroText: FC = () => {
           className="reveal text-2xl xl:text-3xl font-semibold mt-3 text-gradient leading-tight"
           style={delay(0.19)}
         >
-          {HERO_ROLE}
+          {hero.role}
         </p>
 
         <div className="reveal mt-6" style={delay(0.26)}>
           <FlipWords
-            words={[...FLIP_WORDS]}
+            words={hero.flipWords}
             className="font-black text-white/90 text-6xl lg:text-7xl"
           />
         </div>
@@ -90,16 +86,16 @@ export const HeroText: FC = () => {
           className="reveal mt-4 max-w-xl text-lg lg:text-xl text-neutral-300"
           style={delay(0.33)}
         >
-          {HERO_TAGLINE}
+          {hero.tagline}
         </p>
 
         <div className="reveal flex flex-wrap gap-3 mt-10" style={delay(0.4)}>
           <a href="#work" className="btn-primary">
-            <span>View Projects</span>
+            <span>{ui.viewProjects}</span>
             <span aria-hidden>→</span>
           </a>
-          <a href={CV_URL} download={CV_FILE_NAME} className="btn-ghost">
-            <span>Download CV</span>
+          <a href={cv.url} download={cv.fileName} className="btn-ghost">
+            <span>{ui.downloadCv}</span>
             <span aria-hidden>↓</span>
           </a>
           <SocialButtons />
@@ -120,13 +116,16 @@ export const HeroText: FC = () => {
           className="reveal text-xl font-semibold text-gradient"
           style={delay(0.19)}
         >
-          {HERO_ROLE}
+          {hero.role}
         </p>
 
         <div className="reveal" style={delay(0.26)}>
           <FlipWords
-            words={[...FLIP_WORDS]}
-            className="font-black text-white/90 text-5xl"
+            words={hero.flipWords}
+            className={`font-black text-white/90 ${
+              // "Planification" is wider than a phone at text-5xl.
+              locale === "fr" ? "text-[clamp(2rem,10vw,3rem)]" : "text-5xl"
+            }`}
           />
         </div>
 
@@ -134,7 +133,7 @@ export const HeroText: FC = () => {
           className="reveal text-base text-neutral-300"
           style={delay(0.33)}
         >
-          {HERO_TAGLINE}
+          {hero.tagline}
         </p>
 
         <div
@@ -142,15 +141,15 @@ export const HeroText: FC = () => {
           style={delay(0.4)}
         >
           <a href="#work" className="btn-primary w-full">
-            <span>View Projects</span>
+            <span>{ui.viewProjects}</span>
             <span aria-hidden>→</span>
           </a>
           <a
-            href={CV_URL}
-            download={CV_FILE_NAME}
+            href={cv.url}
+            download={cv.fileName}
             className="btn-ghost w-full"
           >
-            <span>Download CV</span>
+            <span>{ui.downloadCv}</span>
             <span aria-hidden>↓</span>
           </a>
           <div className="grid w-full grid-cols-2 gap-3">

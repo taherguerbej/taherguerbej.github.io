@@ -15,7 +15,7 @@ export const MY_SOCIALS: SocialLink[] = [
 
 export const CONTACT_EMAIL = "mohamed_taher.guerbej@sigma-clermont.fr";
 
-/** Public CV: same as pfe_2027/cv_en_2027.tex without the phone number. */
+/** Public CVs: resume_2027_vetaion (EN) and cv_2027_sileane (FR), rebuilt without the phone number. */
 export const CV_URL = "/cv/Taher_Guerbej_CV.pdf";
 
 export const CV_FILE_NAME = "Taher_Guerbej_CV.pdf";
