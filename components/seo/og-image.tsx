@@ -1,19 +1,35 @@
 import { ImageResponse } from "next/og";
-import {
-  HERO_NAME,
-  HERO_ROLE,
-  HERO_AVAILABILITY,
-} from "@/constants/hero-constants";
+import { EN } from "@/content/en";
+import { FR } from "@/content/fr";
+import { HERO_NAME } from "@/constants/hero-constants";
+import { type Locale } from "@/types/i18n-types";
 
-// Rendered once at build time (static export for GitHub Pages).
-export const dynamic = "force-static";
+export const OG_SIZE = { width: 1200, height: 630 };
 
-export const alt = `${HERO_NAME}, ${HERO_ROLE}`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const OG_TEXT: Record<
+  Locale,
+  { eyebrow: string; role: string; focus: string; availability: string }
+> = {
+  en: {
+    eyebrow: "Robotics portfolio",
+    role: EN.hero.role,
+    focus: "Perception · Planning · Control",
+    availability: EN.hero.availability,
+  },
+  fr: {
+    eyebrow: "Portfolio robotique",
+    role: FR.hero.role,
+    focus: "Perception · Planification · Commande",
+    availability: FR.hero.availability,
+  },
+};
 
-/** Social preview, generated at build time from the hero constants. */
-export default function OpengraphImage() {
+export const ogImageAlt = (locale: Locale) =>
+  `${HERO_NAME}, ${OG_TEXT[locale].role}`;
+
+/** Social preview, rendered at build time in the page's language. */
+export const renderOgImage = (locale: Locale) => {
+  const text = OG_TEXT[locale];
   return new ImageResponse(
     (
       <div
@@ -39,7 +55,7 @@ export default function OpengraphImage() {
             color: "#7dd3fc",
           }}
         >
-          Robotics portfolio
+          {text.eyebrow}
         </div>
         <div
           style={{ display: "flex", fontSize: 96, fontWeight: 800, marginTop: 18 }}
@@ -47,10 +63,10 @@ export default function OpengraphImage() {
           {HERO_NAME}
         </div>
         <div style={{ display: "flex", fontSize: 40, marginTop: 10, color: "#c7d6ff" }}>
-          {HERO_ROLE}
+          {text.role}
         </div>
         <div style={{ display: "flex", fontSize: 30, marginTop: 34, color: "#94a3b8" }}>
-          Perception · Planning · Control
+          {text.focus}
         </div>
         <div
           style={{
@@ -60,10 +76,10 @@ export default function OpengraphImage() {
             color: "#34d399",
           }}
         >
-          {HERO_AVAILABILITY}
+          {text.availability}
         </div>
       </div>
     ),
-    { ...size }
+    { ...OG_SIZE }
   );
-}
+};

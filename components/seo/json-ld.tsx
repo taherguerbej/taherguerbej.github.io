@@ -4,6 +4,7 @@ import {
   CONTACT_POINT_EMAIL,
   HERO_ROLE_FR,
   SITE_DESCRIPTION_FR,
+  SITE_NAME_FR,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_SECTIONS,
@@ -53,7 +54,7 @@ const website = {
   url: SITE_URL,
   name: SITE_NAME,
   description: SITE_DESCRIPTION,
-  inLanguage: "en",
+  inLanguage: ["en", "fr"],
   publisher: { "@id": `${SITE_URL}/#person` },
 };
 
@@ -92,7 +93,7 @@ const profilePage = {
   about: { "@id": `${SITE_URL}/#person` },
   mainEntity: { "@id": `${SITE_URL}/#person` },
   inLanguage: "en",
-  primaryImageOfPage: `${SITE_URL}/opengraph-image`,
+  primaryImageOfPage: `${SITE_URL}/media/about/portrait-hero.jpg`,
   hasPart: sections.map((section) => ({ "@id": section["@id"] })),
   significantLink: SITE_SECTIONS.map((section) => sectionId(section.hash)),
 };
@@ -109,11 +110,16 @@ const graphFr = {
     { ...person, jobTitle: HERO_ROLE_FR, description: SITE_DESCRIPTION_FR },
     website,
     {
-      ...profilePage,
+      "@type": "ProfilePage",
       "@id": `${SITE_URL}/fr/#webpage`,
       url: `${SITE_URL}/fr/`,
+      name: SITE_NAME_FR,
       description: SITE_DESCRIPTION_FR,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#person` },
+      mainEntity: { "@id": `${SITE_URL}/#person` },
       inLanguage: "fr",
+      primaryImageOfPage: `${SITE_URL}/media/about/portrait-hero.jpg`,
     },
   ],
 };

@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
+  experimental: {
+    // app/global-not-found.tsx: one 404 page for both root layouts.
+    globalNotFound: true,
+  },
   images: {
     // The image optimizer needs a server; a static export serves files as-is.
     unoptimized: true,

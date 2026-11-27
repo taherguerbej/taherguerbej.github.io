@@ -1,5 +1,5 @@
 import { MY_PROJECTS } from "@/constants/projects-constants";
-import { SKILL_GROUPS } from "@/constants/skills-constants";
+import { SKILL_CHIPS, SKILL_GROUPS } from "@/constants/skills-constants";
 import { FOCUS_AREAS } from "@/constants/focus-constants";
 import { type SiteContent } from "@/types/i18n-types";
 import { type Project } from "@/types/portfolio-types";
@@ -39,10 +39,10 @@ const projects: Project[] = [
     description:
       "Deux bras robotiques travaillent en équipe : l'un déplace une caméra au poignet pour trouver une cible cachée derrière des feuilles, l'autre l'atteint, et un filtre de sécurité vérifie chaque commande avant qu'elle n'arrive aux moteurs.",
     subDescription: [
-      "Développement d'un filtre de sécurité à 12 ddl pour deux bras (fonctions barrières de contrôle) sur deux AgileX Piper, exécuté à 100 Hz entre chaque policy et les moteurs.",
+      "Développement d'un filtre de sécurité à 12 ddl pour deux bras (fonctions barrières de contrôle) sur deux AgileX Piper, exécuté à 100 Hz entre chaque politique de commande (policy) et les moteurs.",
       "Essais sur les robots réels : une trajectoire RL rejouée s'est terminée à moins de 0,002 rad, et un jumeau simulé a reproduit le matériel à 0,033 rad près.",
-      "Création d'une tâche Isaac Lab où un bras équipé d'une caméra au poignet (eye-in-hand) cherche une cible cachée par des feuilles et l'autre bras l'atteint ; une policy unique pour les deux bras, trop fragile, a été remplacée par deux policies PPO distinctes de recherche et d'atteinte.",
-      "Entraînement d'un module de vision supervisé (tête de points clés + distance mesurée) : erreur 3D médiane de 1,67 mm en simulation, 13,6 fois meilleure qu'une régression directe.",
+      "Création d'une tâche Isaac Lab où un bras équipé d'une caméra au poignet (eye-in-hand) cherche une cible cachée par des feuilles et l'autre bras l'atteint ; une politique unique pour les deux bras, trop fragile, a été remplacée par deux politiques PPO distinctes de recherche et d'atteinte.",
+      "Entraînement d'un module de vision supervisé (tête de détection de points clés + distance mesurée) : erreur 3D médiane de 1,67 mm en simulation, 13,6 fois plus faible qu'avec une régression directe.",
       "Intégration de la chaîne complète recherche-atteinte en simulation : toutes les cibles atteintes sans occlusion, et 50 % de cibles atteintes en plus sous occlusion grâce à la mémoire des vues précédentes.",
       "Mise en service d'une caméra stéréo ZED X sur Jetson Orin avec ROS 2 (profondeur à moins de 1 cm d'une référence mesurée au mètre ruban).",
     ],
@@ -71,11 +71,11 @@ const projects: Project[] = [
         ...MIRMI.subprojects![0],
         title: "Filtre de sécurité pour deux bras (OSCBF)",
         description:
-          "Une couche de sécurité entre chaque policy et les moteurs : elle ne modifie une commande que du strict nécessaire pour respecter les limites articulaires et éviter les collisions.",
+          "Une couche de sécurité entre chaque politique de commande et les moteurs : elle ne modifie une commande que du strict nécessaire pour respecter les limites articulaires et éviter les collisions.",
         bullets: [
           "Filtre à fonctions barrières de contrôle à 12 ddl pour deux bras AgileX Piper, exécuté à 100 Hz.",
           "Contraintes de limites articulaires, de table, d'auto-collision et de collision entre les bras.",
-          "Testé sur les robots réels, entre la policy apprise et les moteurs.",
+          "Testé sur les robots réels, entre la politique apprise et les moteurs.",
         ],
         media: MIRMI.subprojects![0].media && {
           ...MIRMI.subprojects![0].media,
@@ -176,7 +176,7 @@ const projects: Project[] = [
     period: "Décembre 2025",
     team: "Avec Mohamed Ali Jomaa Ghouil",
     description:
-      "Un robot mobile patrouille dans une zone délimitée et doit s'arrêter avant les trous et les bords en forme de falaise ; il s'appuie sur le LiDAR et l'odométrie pour la supervision de sécurité, et sur le SLAM pour la cartographie.",
+      "Un robot mobile patrouille dans une zone délimitée et doit s'arrêter avant les trous et les rebords donnant sur le vide ; il s'appuie sur le LiDAR et l'odométrie pour la supervision de sécurité, et sur le SLAM pour la cartographie.",
     subDescription: [
       "Supervision de sécurité sous ROS 2 à partir du LiDAR et de l'odométrie : le robot s'immobilise quand il détecte un trou, repart après un temps d'attente et s'arrête définitivement après des détections répétées.",
       "Grille d'occupation SLAM et raffinement des frontières par fichiers CSV.",
@@ -187,7 +187,7 @@ const projects: Project[] = [
       ...PFR.media,
       alt: "Robot mobile simulé qui patrouille dans une zone fermée par des murs ; à côté, le journal du détecteur signale les trous un par un, puis un arrêt définitif.",
       caption:
-        "Simulation (Gazebo) : le robot patrouille ; chaque trou détecté l'arrête, la patrouille reprend après un temps d'attente et, après des trous répétés, il s'arrête définitivement (journal à droite).",
+        "Simulation (Gazebo) : le robot patrouille ; chaque trou détecté l'arrête, la patrouille reprend après un temps d'attente et, après plusieurs détections de trous, il s'arrête définitivement (journal à droite).",
     },
     gallery: [
       {
@@ -210,10 +210,10 @@ const FOCUS_TEXT = [
   {
     title: "Apprentissage robotique",
     description:
-      "Entraîner des comportements de robots par apprentissage par renforcement en simulation, et comprendre pourquoi une policy échoue avant de lui faire confiance.",
+      "Entraîner des comportements de robots par apprentissage par renforcement en simulation, et comprendre pourquoi une politique de commande échoue avant de lui faire confiance.",
     bullets: [
-      "Policies PPO de recherche et d'atteinte sous Isaac Lab",
-      "Une policy unique et fragile pour deux bras remplacée par des modules séparés",
+      "Politiques PPO de recherche et d'atteinte sous Isaac Lab",
+      "Une politique unique et fragile pour deux bras remplacée par des modules séparés",
       "DQN, Policy Gradient et Actor-Critic comparés sur un TurtleBot3",
     ],
     appliedIn: ["MIRMI, TU Munich", "Projet RL TurtleBot3"],
@@ -232,7 +232,7 @@ const FOCUS_TEXT = [
   {
     title: "Commande sécurisée",
     description:
-      "Garder les robots dans des limites sûres pendant qu'une policy ou un opérateur les pilote, avec un filtre qui ne modifie les commandes que si nécessaire.",
+      "Garder les robots dans des limites sûres pendant qu'une politique de commande ou un opérateur les pilote, avec un filtre qui ne modifie les commandes que si nécessaire.",
     bullets: [
       "Filtre de sécurité à fonctions barrières de contrôle pour deux bras Piper, à 100 Hz",
       "Contraintes de limites articulaires, d'auto-collision et de collision entre bras, sur robots réels",
@@ -315,7 +315,7 @@ const RAW: SiteContent = {
       date: "Mai - sept. 2026",
       contents: [
         "Développement d'un filtre de sécurité pour deux bras (fonctions barrières de contrôle) sur deux AgileX Piper, testé sur les robots réels à 100 Hz.",
-        "Création d'une tâche Isaac Lab où un bras caméra cherche une cible cachée et l'autre bras l'atteint, avec des policies PPO séparées pour la recherche et l'atteinte.",
+        "Création d'une tâche Isaac Lab où un bras caméra cherche une cible cachée et l'autre bras l'atteint, avec des politiques PPO séparées pour la recherche et l'atteinte.",
         "Entraînement d'un module de vision qui localise la cible avec une erreur 3D médiane de 1,67 mm en simulation.",
         "Intégration de la chaîne complète en simulation : 50 % de cibles atteintes en plus sous occlusion grâce à la mémoire des vues précédentes.",
       ],
@@ -362,6 +362,7 @@ const RAW: SiteContent = {
     title: term(group.title),
     items: group.items.map(term),
   })),
+  skillChips: SKILL_CHIPS.map(term),
   languages: [
     { name: "Anglais", level: "Courant (TOEIC 835)" },
     { name: "Français", level: "Courant" },
@@ -394,12 +395,12 @@ const RAW: SiteContent = {
       eyebrow: "À propos",
       title: {
         lead: "Concevoir des robots qui",
-        accent: "voient, décident et bougent en sécurité.",
+        accent: "voient, décident et se déplacent en toute sécurité.",
       },
       whoIAm: "Qui suis-je",
       portraitAlt: "Portrait de Taher Guerbej",
       bio: [
-        "Je suis élève ingénieur en dernière année, en **robotique et mécatronique**, dans un double diplôme entre l'ENISO (Tunisie) et SIGMA Clermont (France).",
+        "Je suis élève ingénieur en dernière année, en **robotique et mécatronique**, dans le cadre d'un cursus de double diplôme entre l'ENISO (Tunisie) et SIGMA Clermont (France).",
         "J'ai passé quatre mois au **MIRMI, TU Munich**, sur la perception active avec deux bras robotiques : un filtre de sécurité testé sur les robots réels, de l'apprentissage par renforcement en simulation et un module de vision appris.",
         "Je recherche un **stage de fin d'études (PFE) de 6 mois** à partir du 15 mars 2027, en apprentissage robotique, manipulation ou perception.",
       ],

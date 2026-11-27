@@ -10,7 +10,11 @@ import {
   STATS,
 } from "@/constants/hero-constants";
 import { MY_PROJECTS, OTHER_PROJECTS } from "@/constants/projects-constants";
-import { LANGUAGES, SKILL_GROUPS } from "@/constants/skills-constants";
+import {
+  LANGUAGES,
+  SKILL_CHIPS,
+  SKILL_GROUPS,
+} from "@/constants/skills-constants";
 import {
   AVAILABILITY,
   CV_FILE_NAME,
@@ -36,6 +40,7 @@ export const EN: SiteContent = {
   experiences: EXPERIENCES,
   education: EDUCATION,
   skillGroups: SKILL_GROUPS,
+  skillChips: SKILL_CHIPS,
   languages: [...LANGUAGES],
   cv: { url: CV_URL, fileName: CV_FILE_NAME },
   ui: {

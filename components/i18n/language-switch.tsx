@@ -13,6 +13,8 @@ export const LanguageSwitch: FC<{ className?: string }> = ({
   const { locale, ui } = useContent();
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>, target: Locale) => {
+    // Ctrl/Cmd/Shift-click and middle-click keep the browser's own behaviour.
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     if (target === locale) return;
     window.location.assign(`${LOCALE_PATHS[target]}${window.location.hash}`);

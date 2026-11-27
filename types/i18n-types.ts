@@ -103,6 +103,8 @@ export interface SiteContent {
   experiences: Experience[];
   education: Experience[];
   skillGroups: SkillGroup[];
+  /** Scrolling chips in the About section. */
+  skillChips: string[];
   languages: { name: string; level: string }[];
   cv: { url: string; fileName: string };
   ui: UiStrings;

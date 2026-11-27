@@ -4,7 +4,6 @@ import { type FC } from "react";
 import { motion } from "motion/react";
 import { Marquee } from "@/components/portfolio/marquee";
 import { MARQUEE, SKILL_CHIP_CLASS } from "@/constants/about-constants";
-import { SKILL_CHIPS } from "@/constants/skills-constants";
 import { useContent } from "@/components/i18n/locale-provider";
 
 const Chip: FC<{ skill: string }> = ({ skill }) => (
@@ -12,7 +11,7 @@ const Chip: FC<{ skill: string }> = ({ skill }) => (
 );
 
 export const SkillsMarquee: FC = () => {
-  const { ui } = useContent();
+  const { skillChips, ui } = useContent();
   return (
   <div className="mt-16">
     <motion.div
@@ -28,13 +27,13 @@ export const SkillsMarquee: FC = () => {
 
     <div className="relative overflow-hidden">
       <Marquee className={MARQUEE.forward} pauseOnHover>
-        {SKILL_CHIPS.map((skill) => (
+        {skillChips.map((skill) => (
           <Chip key={skill} skill={skill} />
         ))}
       </Marquee>
 
       <Marquee reverse className={MARQUEE.reverse} pauseOnHover>
-        {[...SKILL_CHIPS].reverse().map((skill) => (
+        {[...skillChips].reverse().map((skill) => (
           <Chip key={`reverse-${skill}`} skill={skill} />
         ))}
       </Marquee>
