@@ -168,12 +168,30 @@ export const MY_PROJECTS: Project[] = [
     tags: ["ROS 2", "Gazebo", "LiDAR", "SLAM", "Nav2", "Python"],
     accent: "from-aqua/40 to-lavender/10",
     media: {
-      type: "image",
-      src: "/media/pfr/boundary-map.png",
-      alt: "Two plots: a noisy boundary recorded by manual mapping, and the cleaned polygon after post-processing.",
+      type: "video",
+      src: "/media/pfr/hole-detection.mp4",
+      poster: "/media/pfr/hole-detection.jpg",
+      alt: "Simulated mobile robot patrolling inside a walled area; next to it, the detector log reports holes one by one, then a permanent stop.",
       caption:
-        "Simulation: boundary recorded by manual mapping (left) and after post-processing (right).",
+        "Simulation (Gazebo): the robot patrols; each detected hole stops it, patrol resumes after a cooldown, and after repeated holes it stops for good (log on the right).",
     },
+    gallery: [
+      {
+        type: "video",
+        src: "/media/pfr/slam-mapping.mp4",
+        poster: "/media/pfr/slam-mapping.jpg",
+        alt: "RViz view of an occupancy-grid map growing as the mobile robot is driven around the area.",
+        caption:
+          "Simulation (RViz): the SLAM occupancy grid builds up as the robot is driven around the area.",
+      },
+      {
+        type: "image",
+        src: "/media/pfr/boundary-map.png",
+        alt: "Two plots: a noisy boundary recorded by manual mapping, and the cleaned polygon after post-processing.",
+        caption:
+          "Simulation: boundary recorded by manual mapping (left) and after post-processing (right).",
+      },
+    ],
   },
 ];
 
