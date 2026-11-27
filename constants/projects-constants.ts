@@ -110,6 +110,14 @@ export const MY_PROJECTS: Project[] = [
       "CNN",
     ],
     accent: "from-royal/40 to-lavender/10",
+    media: {
+      type: "video",
+      src: "/media/remain/camera-viewpoints.mp4",
+      poster: "/media/remain/camera-viewpoints.jpg",
+      alt: "Simulated UR3e arm moving its wrist camera above a shoe on a table; next to it, the camera image showing the shoe from above.",
+      caption:
+        "Simulation (Gazebo): the UR3e moves its camera to an inspection viewpoint above the shoe. Left: scene. Right: camera image.",
+    },
   },
   {
     id: 3,
@@ -134,6 +142,14 @@ export const MY_PROJECTS: Project[] = [
       "Python",
     ],
     accent: "from-lavender/40 to-aqua/10",
+    media: {
+      type: "video",
+      src: "/media/rl/obstacle-avoidance.mp4",
+      poster: "/media/rl/obstacle-avoidance.jpg",
+      alt: "Top view of a simulated TurtleBot3 driving between white cylinder obstacles inside a hexagonal arena, with its LiDAR scan drawn as a blue fan.",
+      caption:
+        "Simulation (Gazebo): the TurtleBot3 drives between the obstacles; the blue fan is its LiDAR scan.",
+    },
   },
   {
     id: 4,
