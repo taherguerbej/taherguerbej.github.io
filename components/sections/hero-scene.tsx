@@ -2,10 +2,9 @@
 
 import { Suspense, useRef, type FC } from "react";
 import { Canvas, useFrame, type RootState } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { easing } from "maath";
-import { Astronaut } from "@/components/portfolio/astronaut";
+import { RobotArm } from "@/components/portfolio/robot-arm";
 import { Loader } from "@/components/portfolio/loader";
 import { useSceneActive } from "@/hooks/use-scene-active";
 
@@ -13,7 +12,7 @@ const Rig: FC = () => {
   useFrame((state: RootState, delta: number) => {
     easing.damp3(
       state.camera.position,
-      [state.mouse.x / 10, 1 + state.mouse.y / 10, 3],
+      [state.pointer.x / 10, 1 + state.pointer.y / 10, 3],
       0.5,
       delta
     );
@@ -31,18 +30,23 @@ export const HeroScene: FC = () => {
       ref={frame}
       className="absolute inset-0"
       style={{ width: "100vw", height: "100vh" }}
+      aria-label="Animated robot arm with the kinematics of an AgileX Piper"
     >
       <Canvas
         camera={{ position: [0, 1, 3] }}
+        dpr={[1, 1.75]}
         frameloop={active ? "always" : "never"}
       >
+        <ambientLight intensity={0.7} />
+        <hemisphereLight args={["#c7d6ff", "#0b1230", 1.1]} />
+        <directionalLight position={[3, 4, 4]} intensity={2.6} />
+        <directionalLight position={[-4, 2, -3]} intensity={2.2} color="#3b5bff" />
+        <directionalLight position={[-1, -1, 3]} intensity={0.8} color="#22d3ee" />
         <Suspense fallback={<Loader />}>
-          <Float>
-            <Astronaut
-              scale={isMobile ? 0.23 : undefined}
-              position={isMobile ? [0, -1.5, 0] : undefined}
-            />
-          </Float>
+          <RobotArm
+            scale={isMobile ? 2.4 : undefined}
+            position={isMobile ? [0, -1.4, 0] : undefined}
+          />
           <Rig />
         </Suspense>
       </Canvas>

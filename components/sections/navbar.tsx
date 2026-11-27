@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FC } from "react";
-import { HireMeButton } from "@/components/navbar/hire-me-button";
+import { CvButton } from "@/components/navbar/cv-button";
 import { MobileMenu } from "@/components/navbar/mobile-menu";
 import { NavBrand } from "@/components/navbar/nav-brand";
 import { NavLink } from "@/components/navbar/nav-link";
@@ -29,7 +29,7 @@ export const Navbar: FC = () => {
         <div className="flex items-center justify-between py-3">
           <NavBrand />
 
-          <nav className="hidden sm:flex">
+          <nav className="hidden lg:flex">
             <ul className="nav-ul">
               {NAV_ITEMS.map((item) => (
                 <NavLink
@@ -41,14 +41,14 @@ export const Navbar: FC = () => {
             </ul>
           </nav>
 
-          <div className="hidden items-center sm:flex">
-            <HireMeButton />
+          <div className="hidden items-center lg:flex">
+            <CvButton />
           </div>
 
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="flex cursor-pointer text-neutral-300 hover:text-white sm:hidden"
+            className="flex cursor-pointer text-neutral-300 hover:text-white lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >

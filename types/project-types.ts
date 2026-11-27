@@ -10,10 +10,7 @@ export interface ProjectPanelProps {
 
 export type ProjectSummaryProps = Omit<ProjectPanelProps, "showPreview">;
 
-export type ProjectPreviewProps = Pick<
-  ProjectPanelProps,
-  "project" | "index" | "total" | "showPreview"
->;
+export type ProjectPreviewProps = ProjectPanelProps;
 
 export interface ProjectListProps {
   onOpen: (project: Project) => void;

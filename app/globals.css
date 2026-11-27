@@ -4,19 +4,21 @@
 @source "../components/**/*.{js,ts,jsx,tsx}";
 
 @theme {
+  /* Token names are the template's; the values are the robotics palette:
+     cyan + electric blue, with purple kept as a subtle third accent. */
   --color-primary: #030412;
-  --color-midnight: #06091f;
-  --color-navy: #161a31;
-  --color-indigo: #1f1e39;
-  --color-storm: #282b4b;
-  --color-aqua: #33c2cc;
-  --color-mint: #57db96;
-  --color-royal: #5c33cc;
-  --color-lavender: #7a57db;
-  --color-fuchsia: #ca2f8c;
+  --color-midnight: #050a1f;
+  --color-navy: #111a33;
+  --color-indigo: #17203d;
+  --color-storm: #24304f;
+  --color-aqua: #22d3ee;
+  --color-mint: #34d399;
+  --color-royal: #3b5bff;
+  --color-lavender: #8b7cf6;
+  --color-fuchsia: #6d4aff;
   --color-orange: #cc6033;
   --color-sand: #d6995c;
-  --color-coral: #ea4884;
+  --color-coral: #38bdf8;
   --animate-orbit: orbit 50s linear infinite;
   @keyframes orbit {
     0% {
@@ -110,7 +112,7 @@ body {
 }
 
 ::selection {
-  background: rgba(122, 87, 219, 0.4);
+  background: rgba(59, 91, 255, 0.4);
   color: #fff;
 }
 
@@ -123,11 +125,11 @@ body {
   background: #06091f;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#5c33cc, #ca2f8c);
+  background: linear-gradient(#3b5bff, #22d3ee);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#7a57db, #ea4884);
+  background: linear-gradient(#6d5dfc, #38bdf8);
 }
 
 .c-space {
@@ -151,7 +153,10 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #fff 0%, #b5a8e8 50%, #ea4884 100%);
+  /* Room for descenders (g, j, y): background-clip text paints only inside
+     the box, so without it the gradient cuts letters off at the baseline. */
+  padding-bottom: 0.12em;
+  background: linear-gradient(135deg, #fff 0%, #a9c4ff 50%, #22d3ee 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -174,7 +179,7 @@ body {
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(122,87,219,0.6), rgba(234,72,132,0.4), rgba(51,194,204,0.4));
+  background: linear-gradient(135deg, rgba(59,91,255,0.6), rgba(139,124,246,0.35), rgba(34,211,238,0.45));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -199,15 +204,15 @@ body {
 }
 
 .nav-ul {
-  @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+  @apply flex flex-col items-center gap-4 lg:flex-row lg:gap-6 relative z-20;
 }
 
 .nav-li {
-  @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+  @apply text-neutral-400 hover:text-white max-lg:w-full max-lg:rounded-md py-2 max-lg:px-5;
 }
 
 .nav-link {
-  @apply text-lg md:text-base hover:text-white transition-colors;
+  @apply text-lg lg:text-base hover:text-white transition-colors;
 }
 
 .btn {
@@ -216,14 +221,14 @@ body {
 
 .btn-primary {
   @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 text-sm md:text-base font-medium rounded-full cursor-pointer overflow-hidden text-white transition-transform duration-300 hover:-translate-y-0.5;
-  background: linear-gradient(135deg, #5c33cc 0%, #ea4884 100%);
-  box-shadow: 0 10px 30px -10px rgba(234, 72, 132, 0.55);
+  background: linear-gradient(135deg, #3b5bff 0%, #06b6d4 100%);
+  box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.55);
 }
 .btn-primary::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #7a57db 0%, #ca2f8c 100%);
+  background: linear-gradient(135deg, #6d5dfc 0%, #22d3ee 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -457,4 +462,18 @@ body {
   .page-loader {
     display: none;
   }
+}
+
+/* Engineering blueprint grid used by the hero background. */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.blueprint-grid-major {
+  background-image:
+    linear-gradient(to right, rgba(59, 91, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 91, 255, 0.16) 1px, transparent 1px);
+  background-size: 140px 140px;
 }

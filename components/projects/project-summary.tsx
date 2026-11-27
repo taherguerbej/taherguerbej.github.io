@@ -29,14 +29,27 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({
 
     <motion.h3
       {...reveal()}
-      className="mt-3 text-4xl font-bold leading-[1.05] text-white md:text-6xl"
+      className="mt-3 text-3xl font-bold leading-[1.05] text-white md:text-5xl"
     >
       {project.title}
     </motion.h3>
 
+    <motion.div
+      {...reveal(0.05)}
+      className="mt-4 flex flex-wrap items-center gap-2 text-xs text-neutral-400"
+    >
+      <span>{project.period}</span>
+      {project.status && (
+        <span className="rounded-full border border-aqua/30 bg-aqua/10 px-2 py-0.5 text-aqua">
+          {project.status}
+        </span>
+      )}
+      {project.team && <span>· {project.team}</span>}
+    </motion.div>
+
     <motion.p
       {...reveal(0.1)}
-      className="mt-5 max-w-xl leading-relaxed text-neutral-400"
+      className="mt-5 max-w-xl leading-relaxed text-neutral-300"
     >
       {project.description}
     </motion.p>
@@ -44,27 +57,31 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({
     <motion.div {...reveal(0.2)} className="mt-6 flex flex-wrap gap-2">
       {project.tags.map((tag) => (
         <span
-          key={tag.id}
+          key={tag}
           className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-neutral-300"
         >
-          {tag.name}
+          {tag}
         </span>
       ))}
     </motion.div>
 
     <motion.div {...reveal(0.3)} className="mt-7 flex flex-wrap gap-3">
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn-primary"
-      >
-        <span>Visit Live</span>
-        <span aria-hidden>↗</span>
-      </a>
-      <button type="button" onClick={onOpen} className="btn-ghost">
-        <span>Case study</span>
+      <button type="button" onClick={onOpen} className="btn-primary">
+        <span>Read case study</span>
+        <span aria-hidden>→</span>
       </button>
+      {project.links?.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ghost"
+        >
+          <span>{link.label}</span>
+          <span aria-hidden>↗</span>
+        </a>
+      ))}
     </motion.div>
   </div>
 );

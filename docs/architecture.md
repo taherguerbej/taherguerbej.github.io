@@ -1,5 +1,7 @@
 # Architecture
 
+> **Note (this fork):** upstream template documentation by Hasnain Irfan, kept for reference. The Supabase contact form, admin dashboard, testimonials and astronaut model it describes were removed here; the hero now renders a robot arm (`components/portfolio/robot-arm.tsx`). See the root README.
+
 How the pieces fit. Read this before changing anything structural, because several of
 the decisions here look arbitrary until you know what they are avoiding.
 

@@ -1,18 +1,30 @@
-NOTICE — content and assets
-===========================
+NOTICE: code, content and assets
+================================
 
-The MIT license in LICENSE covers the SOURCE CODE of this project only.
-It does not grant any rights to the following, which are included so the
-demo site renders but are not the author's to relicense:
+This site is built on Hasnain Irfan's open-source 3D portfolio template
+(https://github.com/HasnainIrfan/3d-portfolio). The MIT license in LICENSE
+covers the SOURCE CODE only, both the original template and the changes
+made here.
 
-  * Personal content: the name "Hasnain Irfan", biography, project
-    descriptions, testimonials, work history and the resume PDF.
+Not covered by the MIT license:
 
-  * The 3D model in public/models/, which is third-party work sourced from
-    Sketchfab and carries its own license and attribution requirement.
+  * Personal content of Taher Guerbej: name, biography, project and
+    internship descriptions, the CV in public/cv/, the portrait and all
+    project media in public/media/. All rights reserved.
 
-  * Project screenshots, client logos and brand marks in public/assets/,
-    which belong to their respective owners.
+  * Social icons in public/assets/socials/ are the marks of their owners
+    (GitHub, LinkedIn), used only to link to the profiles.
 
-If you use this project as a template, replace all of the above with your
-own before deploying. See the "Credits & licensing" section of README.md.
+Third-party work referenced by the site:
+
+  * The hero arm uses the kinematic chain of the AgileX Piper, taken from
+    https://github.com/agilexrobotics/agx_arm_urdf (MIT, AgileX Robotics).
+    If the Piper meshes are added (phase 2), keep this attribution.
+
+  * The MIRMI safety-filter work builds on OSCBF and CBFpy by Daniel Morton
+    and Marco Pavone, Stanford ASL (MIT). The site credits them in the
+    project description.
+
+All third-party assets of the original template (astronaut model from
+Sketchfab, client screenshots and logos, parallax artwork, résumé PDF,
+social preview) have been removed.

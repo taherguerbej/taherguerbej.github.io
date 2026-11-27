@@ -3,7 +3,7 @@
 import { type FC } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { NAV_ITEMS } from "@/constants/navigation-constants";
-import { HireMeButton } from "./hire-me-button";
+import { CvButton } from "./cv-button";
 import { NavLink } from "./nav-link";
 
 interface MobileMenuProps {
@@ -20,7 +20,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, active, onClose }) => (
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 0.3 }}
-        className="block overflow-hidden border-t border-white/10 bg-primary/90 text-center backdrop-blur-xl sm:hidden"
+        className="block overflow-hidden border-t border-white/10 bg-primary/90 text-center backdrop-blur-xl lg:hidden"
       >
         <nav className="py-5">
           <ul className="nav-ul">
@@ -34,7 +34,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, active, onClose }) => (
             ))}
           </ul>
           <div className="mt-4 px-6">
-            <HireMeButton full onClick={onClose} />
+            <CvButton full onClick={onClose} />
           </div>
         </nav>
       </motion.div>

@@ -33,15 +33,15 @@ export const About: FC = () => {
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <div className="absolute left-1/4 top-1/3 h-72 w-72 rounded-full bg-royal/30 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-coral/20 blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-aqua/15 blur-[140px]" />
       </motion.div>
 
       <SectionHeader
         eyebrow="About"
         title={
           <>
-            Engineering products that{" "}
-            <span className="text-gradient">people actually use.</span>
+            Building robots that{" "}
+            <span className="text-gradient">see, decide and move safely.</span>
           </>
         }
       />

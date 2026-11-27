@@ -4,7 +4,6 @@ import { HERO_NAME } from "@/constants/hero-constants";
 import {
   HOME_DESCRIPTION,
   HOME_TITLE,
-  OG_IMAGES,
   OG_LOCALE,
   SITE_NAME,
   SITE_URL,
@@ -36,7 +35,6 @@ export const metadata: Metadata = {
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
     locale: OG_LOCALE,
-    images: OG_IMAGES,
     firstName: HERO_NAME.split(" ")[0],
     lastName: HERO_NAME.split(" ").slice(1).join(" "),
   },
@@ -44,7 +42,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
-    images: OG_IMAGES,
   },
 };
 

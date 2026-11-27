@@ -7,11 +7,13 @@ import {
 } from "@/constants/navigation-constants";
 
 export const useActiveSection = (): string => {
-  const [active, setActive] = useState<string>(NAV_ITEMS[0].href);
+  // Starts on the hero, which has no nav link, so nothing is underlined.
+  const [active, setActive] = useState<string>("#home");
 
   useEffect(() => {
-    const sections = NAV_ITEMS.map((item) =>
-      document.getElementById(item.href.slice(1))
+    const ids = ["home", ...NAV_ITEMS.map((item) => item.href.slice(1))];
+    const sections = ids.map((id) =>
+      document.getElementById(id)
     ).filter((element): element is HTMLElement => Boolean(element));
 
     if (!sections.length) return;

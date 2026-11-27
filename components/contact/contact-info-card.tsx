@@ -6,12 +6,13 @@ export const ContactInfoCard: FC<ContactInfoCardProps> = ({
   label,
   value,
   href,
+  external,
   gradient,
 }) => {
   const body = (
     <>
       <div
-        className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br text-lg ${gradient}`}
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br text-lg ${gradient}`}
       >
         {icon}
       </div>
@@ -21,7 +22,7 @@ export const ContactInfoCard: FC<ContactInfoCardProps> = ({
         </p>
         <p
           className={`truncate text-sm text-white ${
-            href ? "transition-colors group-hover:text-coral" : ""
+            href ? "transition-colors group-hover:text-aqua" : ""
           }`}
         >
           {value}
@@ -35,6 +36,7 @@ export const ContactInfoCard: FC<ContactInfoCardProps> = ({
   return href ? (
     <a
       href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`${className} group transition-colors hover:bg-white/[0.06]`}
     >
       {body}

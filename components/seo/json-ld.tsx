@@ -12,7 +12,6 @@ import {
   HERO_NAME,
   HERO_ROLE,
 } from "@/constants/hero-constants";
-import { SERVICES } from "@/constants/services-constants";
 import { SKILL_CHIPS } from "@/constants/skills-constants";
 
 const [city, country] = HERO_LOCATION.split(",").map((part) => part.trim());
@@ -25,12 +24,22 @@ const person = {
   description: SITE_DESCRIPTION,
   url: SITE_URL,
   email: `mailto:${CONTACT_POINT_EMAIL}`,
-  image: `${SITE_URL}/og.jpg`,
+  image: `${SITE_URL}/media/about/headshot.png`,
   address: {
     "@type": "PostalAddress",
     addressLocality: city,
     addressCountry: country,
   },
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "SIGMA Clermont, Clermont Auvergne INP",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "National Engineering School of Sousse (ENISO)",
+    },
+  ],
   knowsAbout: SKILL_CHIPS,
   sameAs: SOCIAL_PROFILES,
 };
@@ -80,42 +89,14 @@ const profilePage = {
   about: { "@id": `${SITE_URL}/#person` },
   mainEntity: { "@id": `${SITE_URL}/#person` },
   inLanguage: "en",
-  primaryImageOfPage: `${SITE_URL}/og.jpg`,
+  primaryImageOfPage: `${SITE_URL}/opengraph-image`,
   hasPart: sections.map((section) => ({ "@id": section["@id"] })),
   significantLink: SITE_SECTIONS.map((section) => sectionId(section.hash)),
 };
 
-const professionalService = {
-  "@type": "ProfessionalService",
-  "@id": `${SITE_URL}/#service`,
-  name: `${HERO_NAME} Web & Mobile Development`,
-  url: SITE_URL,
-  provider: { "@id": `${SITE_URL}/#person` },
-  areaServed: "Worldwide",
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Services",
-    itemListElement: SERVICES.map((service) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: service.title,
-        description: service.description,
-      },
-    })),
-  },
-};
-
 const graph = {
   "@context": "https://schema.org",
-  "@graph": [
-    person,
-    website,
-    profilePage,
-    navigation,
-    ...sections,
-    professionalService,
-  ],
+  "@graph": [person, website, profilePage, navigation, ...sections],
 };
 
 export const JsonLd: FC = () => (

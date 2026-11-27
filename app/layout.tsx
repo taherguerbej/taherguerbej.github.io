@@ -4,7 +4,6 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { HERO_NAME } from "@/constants/hero-constants";
 import {
   GOOGLE_SITE_VERIFICATION,
-  OG_IMAGES,
   OG_LOCALE,
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
@@ -40,13 +39,11 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_TAGLINE,
     locale: OG_LOCALE,
-    images: OG_IMAGES,
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_TAGLINE,
-    images: OG_IMAGES,
   },
   category: "technology",
   ...(GOOGLE_SITE_VERIFICATION
@@ -62,7 +59,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: dark)", color: "#030412" },
-    { media: "(prefers-color-scheme: light)", color: "#5c33cc" },
+    { media: "(prefers-color-scheme: light)", color: "#3b5bff" },
   ],
   colorScheme: "dark",
 };

@@ -25,13 +25,13 @@ const TimelineItem: FC<{ item: Experience; index: number }> = ({
             initial={{ scale: 0 }}
             animate={inView ? { scale: 1 } : {}}
             transition={{ duration: 0.5, delay: index * 0.05 + 0.2 }}
-            className="w-4 h-4 p-2 border rounded-full bg-gradient-to-br from-coral to-lavender border-white/20 shadow-lg shadow-coral/30"
+            className="w-4 h-4 p-2 border rounded-full bg-gradient-to-br from-aqua to-royal border-white/20 shadow-lg shadow-aqua/30"
           />
         </div>
         <div className="flex-col hidden gap-2 text-xl font-bold md:flex md:pl-20 md:text-4xl text-neutral-300">
           <h3 className="text-gradient">{item.date}</h3>
-          <h3 className="text-2xl md:text-3xl text-white">{item.title}</h3>
-          <h3 className="text-xl md:text-2xl text-neutral-500">{item.job}</h3>
+          <h3 className="text-xl md:text-2xl text-white">{item.title}</h3>
+          <h3 className="text-base md:text-lg font-medium text-neutral-500">{item.job}</h3>
         </div>
       </div>
       <div className="relative w-full pl-20 pr-4 md:pl-4">
@@ -52,7 +52,7 @@ const TimelineItem: FC<{ item: Experience; index: number }> = ({
               }}
               className="font-normal text-neutral-400 flex gap-3"
             >
-              <span className="mt-2 h-1 w-1 rounded-full bg-coral flex-shrink-0" />
+              <span className="mt-2 h-1 w-1 rounded-full bg-aqua flex-shrink-0" />
               <span>{content}</span>
             </motion.p>
           ))}
@@ -62,7 +62,7 @@ const TimelineItem: FC<{ item: Experience; index: number }> = ({
   );
 };
 
-export const Timeline: FC<TimelineProps> = ({ data }) => {
+export const Timeline: FC<TimelineProps> = ({ id, eyebrow, title, data }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -84,7 +84,7 @@ export const Timeline: FC<TimelineProps> = ({ data }) => {
 
   return (
     <section
-      id="experience"
+      id={id}
       className="c-space section-spacing relative overflow-hidden"
       ref={containerRef}
     >
@@ -99,7 +99,7 @@ export const Timeline: FC<TimelineProps> = ({ data }) => {
         transition={{ duration: 0.6 }}
         className="text-eyebrow"
       >
-        Experience
+        {eyebrow}
       </motion.p>
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
@@ -108,7 +108,7 @@ export const Timeline: FC<TimelineProps> = ({ data }) => {
         transition={{ duration: 0.7, delay: 0.05 }}
         className="text-heading mt-3 max-w-3xl"
       >
-        A track record of <span className="text-gradient">shipping & leading.</span>
+        {title}
       </motion.h2>
 
       <div ref={ref} className="relative pb-20 mt-8">
@@ -121,7 +121,7 @@ export const Timeline: FC<TimelineProps> = ({ data }) => {
         >
           <motion.div
             style={{ height: heightTransform, opacity: opacityTransform }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-coral via-lavender/50 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-aqua via-royal/50 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>

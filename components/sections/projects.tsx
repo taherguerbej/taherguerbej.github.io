@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { ProjectDetails } from "@/components/portfolio/project-details";
 import { PinnedShowcase } from "@/components/projects/pinned-showcase";
 import { ProjectsHeader } from "@/components/projects/projects-header";
+import { MoreProjects } from "@/components/projects/more-projects";
 import { VerticalProjects } from "@/components/projects/vertical-projects";
 import { MY_PROJECTS } from "@/constants/portfolio-constants";
 import { useHasMounted } from "@/hooks/use-has-mounted";
@@ -28,6 +29,8 @@ export const Projects: FC = () => {
           <VerticalProjects onOpen={setActive} />
         </div>
       )}
+
+      <MoreProjects />
 
       {active && (
         <ProjectDetails {...active} closeModal={() => setActive(null)} />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FC } from "react";
-import { HERO_NAME } from "@/constants/portfolio-constants";
+import { HERO_AVAILABILITY, HERO_NAME } from "@/constants/portfolio-constants";
 
 const FIRST_LINE = HERO_NAME.split(" ");
 
@@ -32,18 +32,18 @@ export const PageLoader: FC = () => {
     <div className="page-loader fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-primary">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-royal/30 blur-[140px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-coral/25 blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-aqua/20 blur-[140px]" />
       </div>
 
       <div className="relative flex w-full max-w-3xl flex-col items-center px-6 text-center md:px-10">
         <div className="reveal-pop relative">
-          <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-royal/40 to-coral/40 blur-2xl" />
-          <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-royal to-coral text-3xl font-black text-white shadow-2xl shadow-coral/30 md:h-20 md:w-20 md:text-4xl">
-            H
+          <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-royal/40 to-aqua/40 blur-2xl" />
+          <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-royal to-aqua text-3xl font-black text-white shadow-2xl shadow-aqua/30 md:h-20 md:w-20 md:text-4xl">
+            {HERO_NAME.charAt(0)}
           </span>
         </div>
 
-        <div className="mt-7 overflow-hidden md:mt-9">
+        <div className="mt-7 overflow-hidden pb-2 md:mt-9">
           <div className="flex items-center gap-3 text-3xl font-black tracking-tight md:gap-4 md:text-5xl">
             {FIRST_LINE.map((word, i) => (
               <span
@@ -61,7 +61,7 @@ export const PageLoader: FC = () => {
           className="reveal mt-3 text-[10px] uppercase tracking-[0.4em] text-neutral-400 md:text-xs"
           style={{ animationDelay: "0.16s" }}
         >
-          Software Engineer · Building scalable products
+          Robotics & Mechatronics · Perception · Planning · Control
         </p>
 
         <div
@@ -74,7 +74,7 @@ export const PageLoader: FC = () => {
           </div>
           <div className="relative h-[2px] w-full rounded-full bg-white/10">
             <div className="absolute inset-0 overflow-hidden rounded-full">
-              <div className="intro-fill absolute inset-0 bg-gradient-to-r from-coral via-lavender to-aqua" />
+              <div className="intro-fill absolute inset-0 bg-gradient-to-r from-royal via-lavender to-aqua" />
             </div>
             <div className="intro-knob absolute inset-0">
               <span className="absolute -top-1 left-0 -ml-1.5 h-3 w-3 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.7)]" />
@@ -88,7 +88,7 @@ export const PageLoader: FC = () => {
         >
           <span className="block h-2 w-2 rounded-full bg-mint shadow-[0_0_12px_rgba(87,219,150,0.8)]" />
           <span className="text-[10px] uppercase tracking-[0.4em] text-neutral-400">
-            Available for new projects
+            {HERO_AVAILABILITY}
           </span>
         </div>
       </div>

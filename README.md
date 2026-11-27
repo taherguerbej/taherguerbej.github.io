@@ -1,122 +1,77 @@
-<div align="center">
+# Taher Guerbej · Robotics Portfolio
 
-# Portfolio Website Template: Next.js, 3D Hero, Admin Panel & SEO
+Personal portfolio of Taher Guerbej, Robotics & Mechatronics engineering
+student (ENISO – SIGMA Clermont double degree). Built with Next.js 16,
+React 19, TypeScript, Tailwind CSS v4 and react-three-fiber.
 
-**A free, production-ready developer portfolio template.** 3D animated hero, a built-in admin
-panel that captures your contact-form leads, and full SEO out of the box: sitemap, structured data
-and Open Graph. Build your personal website with Next.js 16, React 19, TypeScript, Three.js and
-Tailwind CSS v4.
+It is a fully static site: no backend, no database, no environment secrets.
 
-[**Live Demo**](https://www.hasnainirfan.com) · [Documentation](docs/) · [Deploy](docs/deployment.md)
-
-[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![Three.js](https://img.shields.io/badge/Three.js-r184-000000?logo=threedotjs&logoColor=white)](https://threejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](LICENSE)
-
-[![Developer portfolio website template with 3D animated hero, built with Next.js, Three.js and Tailwind CSS](docs/images/screenshot.jpg)](https://www.hasnainirfan.com)
-
-</div>
-
-## What you get
-
-Most portfolio templates give you a page and stop. This one also tells you who got in touch, and
-makes sure people can find you.
-
-| | |
-| --- | --- |
-| **3D portfolio** | Animated GLTF hero, a GPU shader globe that travels with your scroll, a pinned horizontal case-study showcase, and scroll-driven reveals throughout |
-| **Admin panel** | Enquiries save to *your* Supabase database and appear in a private inbox at `/admin` with search, pagination and delete. No form-service fee, no one else holding your leads |
-| **SEO ready** | `sitemap.xml`, `robots.txt`, canonical URLs, Open Graph, Twitter cards and JSON-LD structured data, all generated from your own content |
-
-Every string, project and testimonial lives in `constants/`, one typed file per domain. Fork it,
-edit that folder, and it is your portfolio, with no component changes needed.
-
-## Features
-
-**Design:** 3D animated hero · shader globe · pinned case-study showcase · sticky service cards ·
-experience timeline · skills marquee · particle field · parallax background · responsive from 320px ·
-respects `prefers-reduced-motion`
-
-**Admin & leads:** contact form → your database · private inbox with search and pagination ·
-Supabase Auth + an `admin_users` allowlist · an acknowledgement email to the visitor and the lead to
-you · **zero secrets in the repo**
-
-**SEO:** sitemap · robots · canonical · Open Graph + Twitter cards · JSON-LD (`Person`, `WebSite`,
-`ProfilePage`, `ProfessionalService`) · Web App Manifest · generated favicons · self-hosted fonts ·
-`/admin` excluded from indexing
-
-**Code:** TypeScript strict · 0 lint errors · no file over 250 lines · organised by kind
-(`constants/` `types/` `hooks/` `helpers/` `animations/`) · runs with an empty `.env`
-
-## Tech stack
-
-Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Three.js + React Three Fiber ·
-Motion · Supabase (Postgres, Auth, RLS, Edge Functions) · Vercel
-
-## Quick start
+## Run it
 
 ```bash
-git clone https://github.com/HasnainIrfan/myportfolio.git
-cd myportfolio
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
+npm run lint
+npm run build      # production build, every route is static
 ```
 
-Open <http://localhost:3000>. Requires Node 20.9+. **No environment variables needed.** The site
-builds, deploys and runs with an empty `.env`.
+Node.js 20.9 or newer.
 
-## Environment variables
+## Where things live
 
-Four, all optional:
-
-| Variable | Purpose |
+| What | Where |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Your domain. Drives the sitemap, canonical and Open Graph URLs. |
-| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console token. Renders the verification meta tag. |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
+| Name, role, tagline, stats, journey | `constants/hero-constants.ts` |
+| Flagship projects + secondary projects | `constants/projects-constants.ts` |
+| Focus areas | `constants/focus-constants.ts` |
+| Experience and education | `constants/experience-constants.ts` |
+| Skills and languages | `constants/skills-constants.ts` |
+| Email, LinkedIn, GitHub, CV link | `constants/social-constants.ts` |
+| SEO titles and descriptions | `constants/seo-constants.ts` |
+| Robot arm kinematics and animation | `constants/robot-constants.ts` |
+| Project media (videos, posters, images) | `public/media/<project>/` |
+| Public CV (no phone number) | `public/cv/Taher_Guerbej_CV.pdf` |
 
-There are **no server-only secrets**: no admin password, no session key, no service-role key, no
-SMTP credentials. Row-level security does the enforcing, and SMTP lives in Supabase.
+### Adding project media
 
-## Make it yours
+Put the file in `public/media/<project>/`, then add a `media` (main preview)
+or a `gallery` entry to the project in `projects-constants.ts`:
 
-1. **Content:** edit `constants/` (hero, projects, services, experience, reviews, skills, socials)
-2. **Images:** `public/assets/`, and replace `public/og.jpg` with your own 1200×630 preview
-3. **Colours:** the `@theme` block at the top of `app/globals.css`
-4. **SEO:** `constants/seo-constants.ts`, then set `NEXT_PUBLIC_SITE_URL`
-5. **3D model:** drop a `.glb` in `public/models/` and update `components/portfolio/astronaut.tsx`
+```ts
+media: {
+  type: "video",                       // or "image"
+  src: "/media/remain/inspection.mp4",
+  poster: "/media/remain/inspection.jpg",  // first frame, for videos
+  alt: "What the clip shows, for screen readers.",
+  caption: "Real robot: … / Simulation (Gazebo): …",
+},
+```
 
-Full walkthrough: [`docs/customization.md`](docs/customization.md)
+Videos: H.264 MP4. Always say in the caption whether it is simulation or a
+real robot. Projects without media show a "Media coming soon" panel.
 
-## Deployment
+### Updating the CV
 
-Import the repo on Vercel and ship. There is nothing to configure. Add the Supabase values when you want the
-contact form and admin panel. Setup for the database, admin account and lead emails:
-[`docs/deployment.md`](docs/deployment.md).
+The PDF is built from `pfe_2027/cv_en_2027_public.tex` in the CV repository
+(the same CV without the phone number). Rebuild it there and copy the PDF to
+`public/cv/Taher_Guerbej_CV.pdf`.
 
-## Documentation
+## The 3D hero
 
-| | |
-| --- | --- |
-| [`docs/customization.md`](docs/customization.md) | Making it your own, end to end |
-| [`docs/deployment.md`](docs/deployment.md) | Vercel, Supabase, Edge Function, checklist |
-| [`docs/admin.md`](docs/admin.md) | Admin panel: auth model, SQL, lead emails |
-| [`docs/architecture.md`](docs/architecture.md) | Project structure, the 3D layer, auth, database |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Conventions and PR flow |
+`components/portfolio/robot-arm.tsx` draws a 6-DOF arm whose joint chain is
+the real AgileX Piper (origins, axes and limits from the URDF in
+`constants/robot-constants.ts`). It unfolds on load, cycles through
+joint-space keyframes and turns its base toward the pointer. The link shapes
+are placeholders; phase 2 replaces them with the decimated Piper meshes
+while keeping the chain and the animation.
 
-## Credits & licensing
+The 3D canvases only mount on desktop-class devices with a hardware GPU and
+without `prefers-reduced-motion` (see `hooks/use-deferred-3d.ts`).
 
-Code is [MIT](LICENSE). The content and assets are **not** - see [`NOTICE`](NOTICE).
-Replace them before deploying:
+## Credits
 
-- Personal content (name, biography, project write-ups, testimonials, résumé) belongs to Hasnain Irfan
-- `public/models/*.glb` is third-party fan art from Sketchfab, so **check its licence and keep the attribution**
-- Project screenshots and client logos belong to their owners
+- Template: [Hasnain Irfan's 3D portfolio](https://github.com/HasnainIrfan/3d-portfolio) (MIT).
+- Piper kinematics: [AgileX Robotics agx_arm_urdf](https://github.com/agilexrobotics/agx_arm_urdf) (MIT).
 
-3D helpers by [pmndrs](https://github.com/pmndrs), animation by [Motion](https://motion.dev).
-
-If this helped you build your portfolio website, a ⭐ is very welcome.
+See `NOTICE` for what the MIT license does and does not cover. The
+`docs/` folder holds the upstream template's documentation.

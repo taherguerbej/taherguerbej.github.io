@@ -23,6 +23,7 @@ export const ProjectPanel: FC<ProjectPanelProps> = ({
         index={index}
         total={total}
         showPreview={showPreview}
+        onOpen={onOpen}
       />
     </div>
   </div>

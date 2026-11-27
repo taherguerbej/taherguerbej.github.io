@@ -1,5 +1,7 @@
 # Deployment
 
+> **Note (this fork):** upstream template documentation by Hasnain Irfan, kept for reference. The Supabase contact form, admin dashboard, testimonials and astronaut model it describes were removed here; the hero now renders a robot arm (`components/portfolio/robot-arm.tsx`). See the root README.
+
 The site deploys to Vercel with no configuration. What takes a few extra minutes
 is the contact form: a Supabase table, an SMTP account, and the environment
 variables that connect them.

@@ -15,7 +15,7 @@ export default function Icon() {
           justifyContent: "center",
           borderRadius: 8,
           background:
-            "linear-gradient(135deg, #5c33cc 0%, #ca2f8c 55%, #ea4884 100%)",
+            "linear-gradient(135deg, #3b5bff 0%, #2f8bff 55%, #22d3ee 100%)",
           boxShadow: "inset 0 1px 1px rgba(255,255,255,0.35)",
         }}
       >
@@ -30,7 +30,7 @@ export default function Icon() {
             letterSpacing: -1,
           }}
         >
-          H
+          T
         </div>
       </div>
     ),

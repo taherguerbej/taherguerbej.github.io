@@ -1,104 +1,90 @@
 import { HERO_LOCATION, HERO_NAME, HERO_ROLE } from "./hero-constants";
 import { CONTACT_EMAIL, MY_SOCIALS } from "./social-constants";
 
+/**
+ * Set NEXT_PUBLIC_SITE_URL to the live domain before deploying.
+ * The fallback only makes local builds work.
+ */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.hasnainirfan.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
 ).replace(/\/$/, "");
 
 export const absoluteUrl = (path: string) =>
   `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 
-export const SITE_NAME = `${HERO_NAME} | ${HERO_ROLE}`;
+export const SITE_NAME = `${HERO_NAME} | Robotics Portfolio`;
 
 export const SITE_TITLE = `${HERO_NAME} | ${HERO_ROLE}`;
 
 export const SITE_DESCRIPTION =
-  "Senior Software Engineer with 5+ years building scalable web and mobile products in React, Next.js and Node.js. Open to freelance and contract work.";
+  "Robotics and mechatronics engineering student (ENISO, SIGMA Clermont): robot learning, perception and safe control. Open to a PFE internship from March 2027.";
 
 export const SITE_TAGLINE =
-  "Scalable web & mobile products built with React, Next.js and Node.js.";
+  "Robot learning, perception and safe control for intelligent robotic systems.";
 
-export const OG_IMAGE = "/og.jpg";
-export const OG_IMAGE_ALT = `${HERO_NAME}, ${HERO_ROLE} portfolio`;
+export const OG_IMAGE_ALT = `${HERO_NAME}, ${HERO_ROLE}`;
 export const OG_LOCALE = "en_US";
-
-export const OG_IMAGES = [
-  {
-    url: OG_IMAGE,
-    width: 1200,
-    height: 630,
-    alt: OG_IMAGE_ALT,
-  },
-];
 
 export const GOOGLE_SITE_VERIFICATION =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
 
 export const SITE_KEYWORDS = [
   HERO_NAME,
-  "Software Engineer",
-  "Senior Software Engineer",
-  "Full Stack Developer",
-  "Next.js Developer",
-  "React Developer",
-  "React Native Developer",
-  "Node.js Developer",
-  "Frontend Developer",
-  "Web Developer Portfolio",
-  "Freelance Developer",
-  "Hire Software Engineer",
+  "Robotics engineering student",
+  "Mechatronics",
+  "Robot learning",
+  "Reinforcement learning",
+  "Active perception",
+  "Bimanual manipulation",
+  "Control barrier functions",
+  "ROS 2",
+  "Isaac Lab",
+  "PFE internship",
+  "SIGMA Clermont",
+  "ENISO",
   HERO_LOCATION,
-  "Pakistan",
-  "Remote Developer",
 ];
 
-export const HOME_TITLE = `${HERO_NAME} | ${HERO_ROLE} & Next.js Developer`;
+export const HOME_TITLE = `${HERO_NAME} | Robotics & Mechatronics Engineering Student`;
 
-export const HOME_DESCRIPTION =
-  "Senior Software Engineer in Karachi building scalable web, mobile and API products with React, Next.js and Node.js. Open to freelance and contract work.";
-
-export const ADMIN_TITLE = "Contact submissions";
-
-export const ADMIN_DESCRIPTION =
-  "Private dashboard for contact form submissions. Not part of the public site.";
-
-export const ADMIN_LOGIN_TITLE = "Sign in";
-
-export const ADMIN_LOGIN_DESCRIPTION =
-  "Sign in to the private contact submissions dashboard.";
+export const HOME_DESCRIPTION = SITE_DESCRIPTION;
 
 export const SITE_SECTIONS = [
   {
     name: "Home",
     hash: "#home",
-    description: `${HERO_NAME}, ${HERO_ROLE} building scalable web and mobile products.`,
+    description: `${HERO_NAME}, ${HERO_ROLE}.`,
   },
   {
     name: "About",
     hash: "#about",
-    description: `Background, stack and working style of ${HERO_NAME}, a ${HERO_ROLE} based in ${HERO_LOCATION}.`,
+    description: `Background and education of ${HERO_NAME}, based in ${HERO_LOCATION}.`,
   },
   {
-    name: "Services",
-    hash: "#services",
-    description:
-      "Web applications, cross-platform mobile apps, APIs and technical consulting for startups and product teams.",
+    name: "Focus areas",
+    hash: "#focus",
+    description: "Robot learning, perception, safe control, planning and integration.",
   },
   {
-    name: "Work",
+    name: "Projects",
     hash: "#work",
     description:
-      "Selected projects and case studies built with React, Next.js, React Native and Node.js.",
+      "Research and academic robotics projects: active perception with two arms, UR3e inspection, reinforcement learning and mobile robot safety.",
   },
   {
-    name: "Testimonials",
-    hash: "#testimonials",
-    description: `What clients and teammates say about working with ${HERO_NAME}.`,
+    name: "Experience",
+    hash: "#experience",
+    description: "Research and industrial internships.",
+  },
+  {
+    name: "Skills",
+    hash: "#skills",
+    description: "Robotics, robot learning, perception and programming tools.",
   },
   {
     name: "Contact",
     hash: "#contact",
-    description: `Get in touch with ${HERO_NAME} about freelance, contract or full-time work.`,
+    description: `Contact ${HERO_NAME} about a PFE internship.`,
   },
 ] as const;
 

@@ -1,22 +1,70 @@
-import { type CSSProperties, type HTMLAttributes, type RefObject } from "react";
+import { type HTMLAttributes, type ReactNode } from "react";
 
-export interface ProjectTag {
-  id: number;
-  name: string;
-  path: string;
+/** One image or video shown in a project preview or case study. */
+export interface ProjectMedia {
+  type: "image" | "video";
+  /** Path under public/, e.g. "/media/mirmi/active-search.mp4". */
+  src: string;
+  /** Still frame shown before a video plays. Use one for every video. */
+  poster?: string;
+  /** Describes the content for screen readers. */
+  alt: string;
+  /** Visible caption. Say "Simulation" or "Real robot" explicitly. */
+  caption?: string;
+}
+
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
+/** A self-contained piece of work inside a larger project. */
+export interface SubProject {
+  title: string;
+  description: string;
+  bullets: string[];
+  media?: ProjectMedia;
+  /** Whose work this builds on. Shown under the sub-project. */
+  credit?: string;
 }
 
 export interface Project {
   id: number;
   title: string;
+  /** Small label above the title: where, and in what context. */
   category: string;
+  period: string;
+  /** Leave undefined rather than guess. */
+  status?: "Completed" | "Ongoing";
+  /** e.g. "Group project with …". */
+  team?: string;
+  /** One or two sentences for the showcase panel. */
   description: string;
+  /** Detailed bullets for the case-study modal. */
   subDescription: string[];
-  href: string;
-  logo: string;
-  image: string;
-  tags: ProjectTag[];
+  tags: string[];
+  /** Tailwind gradient used behind the preview. */
   accent: string;
+  /** Main preview. Without it the panel shows a styled placeholder. */
+  media?: ProjectMedia;
+  /** Extra media in the case-study modal. */
+  gallery?: ProjectMedia[];
+  subprojects?: SubProject[];
+  /** Repositories, reports, videos. Only real URLs. */
+  links?: ProjectLink[];
+  /** Third-party work this project builds on. */
+  credits?: string[];
+}
+
+/** A smaller project shown in the secondary grid. */
+export interface OtherProject {
+  title: string;
+  context: string;
+  period?: string;
+  status?: "Completed" | "Ongoing";
+  description: string;
+  tags: string[];
+  links?: ProjectLink[];
 }
 
 export interface SocialLink {
@@ -32,19 +80,26 @@ export interface Experience {
   contents: string[];
 }
 
-export interface Review {
-  name: string;
-  role: string;
-  body: string;
-  accent: string;
-}
-
-export interface Service {
+export interface FocusArea {
   id: number;
   title: string;
   description: string;
+  /** SVG path data for a 24x24, stroked icon. */
   icon: string;
   bullets: string[];
+  /** Projects where this was applied. */
+  appliedIn: string[];
+}
+
+export interface SkillGroup {
+  title: string;
+  items: string[];
+}
+
+export interface JourneyStop {
+  city: string;
+  country: string;
+  label: string;
 }
 
 export interface Stat {
@@ -54,11 +109,6 @@ export interface Stat {
 
 export interface ProjectDetailsProps extends Project {
   closeModal: () => void;
-}
-
-export interface AlertProps {
-  type: "success" | "danger";
-  text: string;
 }
 
 export interface FlipWordsProps {
@@ -71,7 +121,7 @@ export interface MarqueeProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   reverse?: boolean;
   pauseOnHover?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
   vertical?: boolean;
   repeat?: number;
 }
@@ -89,10 +139,13 @@ export interface ParticlesProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface TimelineProps {
+  id: string;
+  eyebrow: string;
+  title: ReactNode;
   data: Experience[];
 }
 
-export interface AstronautProps {
+export interface RobotArmProps {
   scale?: number;
   position?: [number, number, number];
 }

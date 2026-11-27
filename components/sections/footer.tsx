@@ -5,8 +5,11 @@ import { motion, useInView } from "motion/react";
 import {
   CONTACT_EMAIL,
   HERO_NAME,
+  HERO_ROLE,
   MY_SOCIALS,
 } from "@/constants/portfolio-constants";
+
+const TEMPLATE_URL = "https://github.com/HasnainIrfan/3d-portfolio";
 
 export const Footer: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,16 +37,16 @@ export const Footer: FC = () => {
       >
         <div>
           <div className="flex items-center gap-2 text-base font-semibold tracking-tight text-white">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-royal to-coral text-white text-sm font-black">
-              H
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-royal to-aqua text-white text-sm font-black">
+              {HERO_NAME.charAt(0)}
             </span>
             <span>{HERO_NAME}</span>
           </div>
           <p className="mt-3 text-sm text-neutral-400 max-w-sm">
-            Building scalable web & mobile products with care. Reach out at{" "}
+            {HERO_ROLE}. Reach me at{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-white hover:text-coral transition-colors"
+              className="text-white hover:text-aqua transition-colors break-all"
             >
               {CONTACT_EMAIL}
             </a>
@@ -68,12 +71,23 @@ export const Footer: FC = () => {
               </motion.a>
             ))}
           </div>
-          <div className="flex gap-3 text-sm text-neutral-500">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-neutral-500 md:justify-end">
             <span>
               © {new Date().getFullYear()} {HERO_NAME}
             </span>
             <span>·</span>
-            <span>All rights reserved.</span>
+            <span>
+              Built on{" "}
+              <a
+                href={TEMPLATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-white/20 underline-offset-2 hover:text-white"
+              >
+                Hasnain Irfan&apos;s 3D portfolio template
+              </a>{" "}
+              (MIT)
+            </span>
           </div>
         </div>
       </motion.div>
@@ -84,7 +98,7 @@ export const Footer: FC = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
         className="mt-16 text-center text-[20vw] md:text-[14rem] font-black leading-none text-white/[0.03] select-none"
       >
-        HASNAIN
+        GUERBEJ
       </motion.p>
     </footer>
   );

@@ -1,5 +1,7 @@
 # Make it your own
 
+> **Note (this fork):** upstream template documentation by Hasnain Irfan, kept for reference. The Supabase contact form, admin dashboard, testimonials and astronaut model it describes were removed here; the hero now renders a robot arm (`components/portfolio/robot-arm.tsx`). See the root README.
+
 Fork this repo and you can have a portfolio under your own name in about an
 hour. Steps 1 to 4 need no component edits at all, because every string on the page comes
 out of one typed constants file.

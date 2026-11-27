@@ -5,7 +5,7 @@ export interface NavLinkProps {
   onClick?: () => void;
 }
 
-export interface HireMeButtonProps {
+export interface CvButtonProps {
   onClick?: () => void;
   full?: boolean;
 }
