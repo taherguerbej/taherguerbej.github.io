@@ -89,9 +89,9 @@ export const MY_PROJECTS: Project[] = [
     title: "Vision-Guided Shoe Inspection with a UR3e",
     category: "Group project · REMAIN (Interreg Sudoe)",
     period: "2025 - 2026",
-    team: "Group project",
+    team: "Team of 8 students",
     description:
-      "A UR3e robot arm inspects shoes for defects: collision-aware motion planning to several camera viewpoints in simulation, then deployment on the physical robot.",
+      "A UR3e with a RealSense camera on its wrist finds a shoe, moves the camera to viewpoints around it without collisions and photographs it for defect detection: first in Gazebo, then on the real robot.",
     subDescription: [
       "Developed a UR3e inspection simulation with ROS 2, Gazebo, URDF/XACRO and MoveIt 2.",
       "Collision-aware motion planning for multiple camera viewpoints.",
@@ -112,12 +112,51 @@ export const MY_PROJECTS: Project[] = [
     accent: "from-royal/40 to-lavender/10",
     media: {
       type: "video",
-      src: "/media/remain/camera-viewpoints.mp4",
-      poster: "/media/remain/camera-viewpoints.jpg",
-      alt: "Simulated UR3e arm moving its wrist camera above a shoe on a table; next to it, the camera image showing the shoe from above.",
+      src: "/media/remain/real-ur3e-inspection.mp4",
+      poster: "/media/remain/real-ur3e-inspection.jpg",
+      alt: "Real UR3e arm with a RealSense camera on its wrist moving between viewpoints around a black shoe on a turntable in the lab.",
       caption:
-        "Simulation (Gazebo): the UR3e moves its camera to an inspection viewpoint above the shoe. Left: scene. Right: camera image.",
+        "Real robot: the UR3e moves its wrist camera between inspection viewpoints around the shoe.",
     },
+    gallery: [
+      {
+        type: "video",
+        src: "/media/remain/camera-viewpoints.mp4",
+        poster: "/media/remain/camera-viewpoints.jpg",
+        alt: "Simulated UR3e arm moving its wrist camera above a shoe on a table; next to it, the camera image showing the shoe from above.",
+        caption:
+          "Simulation (Gazebo): the UR3e moves its camera to an inspection viewpoint above the shoe. Left: scene. Right: camera image.",
+      },
+      {
+        type: "image",
+        src: "/media/remain/defect-segmentation.jpg",
+        alt: "Side view of a damaged black shoe with the detected defect regions along the sole highlighted in blue.",
+        caption:
+          "Defect segmentation (U-Net, blue overlay) on a smartphone photo of a damaged shoe: offline validation of the detection node.",
+      },
+    ],
+    subprojects: [
+      {
+        title: "From simulation to the real UR3e",
+        description:
+          "Second semester: the simulated pipeline was moved to a real UR3e with an Intel RealSense D435 mounted on the wrist (ROS 2 Humble, MoveIt 2).",
+        bullets: [
+          "Eye-in-hand calibration with an ArUco marker and the Tsai-Lenz method (easy_handeye2). A first, physically impossible result was rejected and traced to wrong marker settings.",
+          "Shoe localization from the depth image: table-plane estimate, object mask, contour filtering, then projection to a 3-D position and yaw.",
+          "Five viewpoints on an elliptical dome around the shoe, with the camera turned to face it at each one; table, shoe and camera body registered as collision objects; RRT* planning at 15 % of maximum speed.",
+          "Result: 4 of 5 viewpoints photographed on the real robot (3 of 5 in simulation, limited by the arm's 500 mm reach).",
+          "Defect detection node: a U-Net segments damage and a CNN labels each region as hole or scratch. Reliable on smartphone photos; on robot images it drops because of viewpoint and lighting changes, so the next step is training on images from the robot's camera.",
+        ],
+        media: {
+          type: "image",
+          src: "/media/remain/real-camera-viewpoints.jpg",
+          alt: "Four photos of a worn black shoe taken by the robot's camera: top, front, left and back views.",
+          caption:
+            "Real robot: images captured by the wrist camera at four viewpoints (top, front, left, back).",
+        },
+        credit: "Team result (8 students, Clermont-Auvergne INP SIGMA), April 2026 report.",
+      },
+    ],
   },
   {
     id: 3,

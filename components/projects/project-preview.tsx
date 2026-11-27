@@ -43,7 +43,9 @@ export const ProjectPreview: FC<ProjectPreviewProps> = ({
   const label = media
     ? media.caption?.startsWith("Simulation")
       ? "Simulation"
-      : media.type === "video"
+      : media.caption?.startsWith("Real robot")
+        ? "Real robot"
+        : media.type === "video"
         ? "Video"
         : "Result"
     : "Media coming soon";
